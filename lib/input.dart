@@ -3,7 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class input extends StatefulWidget {
-  const input({Key? key}) : super(key: key);
+  // ignore: non_constant_identifier_names
+  // const input({Key? key, required String Name, String? Email, String? PhoneNo}) : super(key: key);
+  final String Name;
+  final String Email;
+  final String PhoneNo;
+  final String UserProfile;
+  input({
+    required this.Name,
+    required this.Email,
+    required this.PhoneNo,
+    required this.UserProfile,
+  });
+  // PKBook({String, String? Email, String? Name, String? PhoneNo});
 
   @override
   _inputState createState() => _inputState();
@@ -12,11 +24,23 @@ class input extends StatefulWidget {
 class _inputState extends State<input> {
   @override
   Widget build(BuildContext context) {
-    var vwidth = MediaQuery.of(context).size.width;
-    var vhight = MediaQuery.of(context).size.height;
+    print("================Input widget=================>");
+    print(widget.Name);
+    print(widget.Email);
+    print(widget.PhoneNo);
+    print(widget.UserProfile);
     String UserName = "User Name";
     String UserEmail = "Abc@gmail.com";
     String PhoneNo = "03XX-XXXXXXXX";
+    String UserProfile = "03XX-XXXXXXXX";
+    setState(() {
+      UserName = widget.Name;
+      UserEmail = widget.Email;
+      PhoneNo = widget.PhoneNo;
+      UserProfile = widget.UserProfile;
+    });
+    var vwidth = MediaQuery.of(context).size.width;
+    var vhight = MediaQuery.of(context).size.height;
     final TextEditingController SMScontroller = TextEditingController();
 
     void UploadPost() async {
@@ -24,14 +48,16 @@ class _inputState extends State<input> {
       final String SMS = SMScontroller.text;
       try {
         FirebaseFirestore firestore = FirebaseFirestore.instance;
-        DateTime now  = DateTime.now();
+        DateTime now = DateTime.now();
         String formattedDate = DateFormat('kk:mm:ss EEE d MMM').format(now);
         print(formattedDate);
-        await firestore.collection("Posts").doc(UserName+formattedDate).set({
+        await firestore.collection("Posts").doc(UserName + formattedDate).set({
           "username": UserName,
           "email": UserEmail,
           "PhoneNo": PhoneNo,
-          "SMS": SMS
+          "SMS": SMS,
+          "Date": formattedDate,
+          "UserProfile" : UserProfile,
         });
         // Navigator.pushReplacementNamed(context, '/Home', arguments: {
         //   'Name': username,
@@ -95,27 +121,30 @@ class _inputState extends State<input> {
                 );
                 AlertDialog alert = AlertDialog(
                   title: Center(child: Text("Create post")),
-                  content: Column(
-                    children: [
-                      Container(
-                        width: vwidth - 50,
-                        height: 300,
-                        child: TextFormField(
-                          minLines: 1,
-                          maxLines: 8,
-                          controller: SMScontroller,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: "What's on your mind? "),
+                  content: SizedBox(
+                    height: 230,
+                    child: Column(
+                      children: [
+                        Container(
+                          width: vwidth - 50,
+                          height: 200,
+                          child: TextFormField(
+                            minLines: 1,
+                            maxLines: 8,
+                            controller: SMScontroller,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: "What's on your mind? "),
+                          ),
                         ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[okButton],
-                      )
-                    ],
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[okButton],
+                        )
+                      ],
+                    ),
                   ),
                   // actions: [
                   //   okButton,

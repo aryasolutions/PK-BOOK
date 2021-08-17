@@ -9,7 +9,8 @@ class PKBook extends StatefulWidget {
   final String Name;
   final String Email;
   final String PhoneNo;
-  PKBook({required this.Name, required this.Email, required this.PhoneNo});
+  final String UserProfile;
+  PKBook({required this.Name, required this.Email, required this.PhoneNo, required this.UserProfile, });
   // PKBook({String, String? Email, String? Name, String? PhoneNo});
 
   @override
@@ -23,6 +24,7 @@ class _PKBookState extends State<PKBook> {
     print(widget.Name);
     print(widget.Email);
     print(widget.PhoneNo);
+    // print(widget.);
     List<dynamic> posts = [
       [
         "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
@@ -119,7 +121,12 @@ Lets salute the Nation on Inependence Day. """,
             child: Column(
           children: [
             TopBar(),
-            input(),
+            input(
+            Name: widget.Name,
+            Email: widget.Email,
+            PhoneNo: widget.PhoneNo,
+            UserProfile:widget.UserProfile
+            ),
             SingleChildScrollView(
                 child: Column(
               children: [
@@ -145,6 +152,9 @@ Lets salute the Nation on Inependence Day. """,
       ),
     );
   }
+}
+
+class UserProfile {
 }
 
 /////////////////////////////////TopBar//////////////////////////////

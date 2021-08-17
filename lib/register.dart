@@ -21,6 +21,8 @@ class _RegistrationState extends State<Registration> {
     final TextEditingController otpcontroller = TextEditingController();
     final TextEditingController userpasswordcontroller =
         TextEditingController();
+    String UserProfile = "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=";
+
     void register() async {
       FirebaseAuth auth = FirebaseAuth.instance;
       FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -43,16 +45,19 @@ class _RegistrationState extends State<Registration> {
             "username": username,
             "email": useremail,
             "PhoneNo": PhoneNo,
-            "password": userpassword
+            "password": userpassword,
+            "UserProfile":UserProfile,
+            "UID":user.user.uid
           });
 
-               Navigator.push(
+        Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => HomePage(
             Name: username,
             Email: useremail,
             PhoneNo: PhoneNo,
+            UserProfile:UserProfile
           ),
         ),
       );
@@ -153,16 +158,19 @@ class _RegistrationState extends State<Registration> {
                                 ),
                               ),
                               SizedBox(height: 15),
-                              TextField(
-                                controller: useremailcontroller,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    hintText: "Email",
-                                    labelText: "Email",
-                                    suffixIcon: TextButton(
-                                      child: Text("Sent OTP"),
-                                      onPressed: () => sentOTP(),
-                                    )),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextField(
+                                  controller: useremailcontroller,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      hintText: "Email",
+                                      labelText: "Email",
+                                      suffixIcon: TextButton(
+                                        child: Text("Sent OTP"),
+                                        onPressed: () => sentOTP(),
+                                      )),
+                                ),
                               ),
                               SizedBox(height: 15),
                               TextField(

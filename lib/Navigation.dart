@@ -7,13 +7,14 @@ import 'package:pk_book/PKBook.dart';
 import 'package:pk_book/Profile.dart';
 import 'package:pk_book/login.dart';
 
-
 class HomePage extends StatefulWidget {
   // const HomePage({Key? key}) : super(key: key);
   final String Name;
   final String Email;
   final String PhoneNo;
-  HomePage({required this.Name, required this.Email, required this.PhoneNo});
+  final String UserProfile;
+  // ignore: non_constant_identifier_names
+  HomePage({required this.Name, required this.Email, required this.PhoneNo, required this.UserProfile});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -22,24 +23,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double value = 0;
   var Navigatio = 0;
-  String UserName = "User Name";
-  String UserProfile = "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=";
-
-
+ 
   @override
   Widget build(BuildContext context) {
     print("================HomePage widget=================>");
     print(widget.Name);
     print(widget.Email);
     print(widget.PhoneNo);
-  //     Navigate(context) {
-  //   if (Navigatio == 0) {
-  //   Navigator.push(context, MaterialPageRoute(builder: (context) => PKBook()));
-  //   }
-  //   if(Navigatio == 1) {
-  //         Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
-  //   }
-  // }
+    print(widget.UserProfile);
+    //     Navigate(context) {
+    //   if (Navigatio == 0) {
+    //   Navigator.push(context, MaterialPageRoute(builder: (context) => PKBook()));
+    //   }
+    //   if(Navigatio == 1) {
+    //         Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
+    //   }
+    // }
     return Scaffold(
       body: Stack(
         children: [
@@ -67,17 +66,15 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     CircleAvatar(
                       radius: 50.0,
-                      backgroundImage: NetworkImage(UserProfile),
+                      backgroundImage: NetworkImage(widget.UserProfile),
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
                     Text(
-                      UserName,
+                      widget.Name,
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                      ),
+                          color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   ],
                 )),
@@ -136,7 +133,11 @@ class _HomePageState extends State<HomePage> {
                       // appBar: AppBar(
                       //   title: Text('Arya Solutions'),
                       // ),
-                      body: PKBook(Name: widget.Name, Email: widget.Email, PhoneNo: widget.PhoneNo)
+                      body: PKBook(
+                          Name: widget.Name,
+                          Email: widget.Email,
+                          PhoneNo: widget.PhoneNo,
+                          UserProfile:widget.UserProfile)
                       // Center(
                       //   child: Text(
                       //     "Pakistan Zindabad",

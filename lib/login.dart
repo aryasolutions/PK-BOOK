@@ -24,6 +24,7 @@ class _LoginState extends State<Login> {
   String Name = '';
   String Email = '';
   String PhoneNo = '';
+  String UserProfile = '';
 
   final TextEditingController useremailcontroller = TextEditingController();
   final TextEditingController userpasswordcontroller = TextEditingController();
@@ -57,8 +58,9 @@ class _LoginState extends State<Login> {
         Name = UserData["username"];
         Email = UserData["email"];
         PhoneNo = UserData["PhoneNo"];
+        UserProfile = UserData["UserProfile"];
       });
-      print({Name, Email, PhoneNo});
+      print({Name, Email, PhoneNo,"pic",UserProfile});
       // Navigator.push(
       //   context,
       //   MaterialPageRoute(
@@ -76,6 +78,7 @@ class _LoginState extends State<Login> {
             Name: Name,
             Email: Email,
             PhoneNo: PhoneNo,
+            UserProfile:UserProfile
           ),
         ),
       );
@@ -176,7 +179,7 @@ class _LoginState extends State<Login> {
                             children: [
                               SizedBox(height: 30),
                               Text(
-                                'Welcome to Arya Solutions',
+                                'Welcome to PK Book',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               SizedBox(height: 30),
