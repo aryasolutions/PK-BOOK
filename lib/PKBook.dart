@@ -5,7 +5,12 @@ import 'dart:math';
 import 'package:pk_book/input.dart';
 
 class PKBook extends StatefulWidget {
-  const PKBook({Key? key}) : super(key: key);
+  // const PKBook({Key? key}) : super(key: key);
+  final String Name;
+  final String Email;
+  final String PhoneNo;
+  PKBook({required this.Name, required this.Email, required this.PhoneNo});
+  // PKBook({String, String? Email, String? Name, String? PhoneNo});
 
   @override
   _PKBookState createState() => _PKBookState();
@@ -14,6 +19,10 @@ class PKBook extends StatefulWidget {
 class _PKBookState extends State<PKBook> {
   @override
   Widget build(BuildContext context) {
+    print("================PK Book widget=================>");
+    print(widget.Name);
+    print(widget.Email);
+    print(widget.PhoneNo);
     List<dynamic> posts = [
       [
         "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
@@ -42,10 +51,12 @@ Lets salute the Nation on Inependence Day. """,
       ],
     ];
 
-      FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
     data() async {
-      final DocumentSnapshot snapshot =
-          await firestore.collection("Posts").doc("User Name12:50:49 Mon 16 Aug").get();
+      final DocumentSnapshot snapshot = await firestore
+          .collection("Posts")
+          .doc("User Name12:50:49 Mon 16 Aug")
+          .get();
       final data = snapshot.data();
       print(data);
     }
@@ -199,7 +210,6 @@ class _TopBarState extends State<TopBar> {
                   )),
             ],
           ),
-     
         ),
       ),
     );

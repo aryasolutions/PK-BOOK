@@ -2,6 +2,7 @@ import 'package:email_auth/email_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pk_book/Navigation.dart';
 import 'package:pk_book/login.dart';
 
 class Registration extends StatefulWidget {
@@ -44,11 +45,17 @@ class _RegistrationState extends State<Registration> {
             "PhoneNo": PhoneNo,
             "password": userpassword
           });
-          // Navigator.pushReplacementNamed(context, '/Home', arguments: {
-          //   'Name': username,
-          //   'Email': useremail,
-          //   'PhoneNo': PhoneNo
-          // });
+
+               Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(
+            Name: username,
+            Email: useremail,
+            PhoneNo: PhoneNo,
+          ),
+        ),
+      );
         } else {
           print("Invalid OTP");
         }

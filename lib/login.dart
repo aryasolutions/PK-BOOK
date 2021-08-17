@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pk_book/Navigation.dart';
 import 'package:pk_book/PKBook.dart';
 import 'package:pk_book/register.dart';
 // import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -20,6 +21,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  String Name = '';
+  String Email = '';
+  String PhoneNo = '';
+
   final TextEditingController useremailcontroller = TextEditingController();
   final TextEditingController userpasswordcontroller = TextEditingController();
 
@@ -48,13 +53,34 @@ class _LoginState extends State<Login> {
       print("Email =====> ${UserData["email"]}");
       print("Provider =====> ${UserData["provider"]}");
       print("Phone No =====> ${UserData["PhoneNo"]}");
-
+      setState(() {
+        Name = UserData["username"];
+        Email = UserData["email"];
+        PhoneNo = UserData["PhoneNo"];
+      });
+      print({Name, Email, PhoneNo});
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => PKBook(
+      //       Name: Name,
+      //       Email: Email,
+      //       PhoneNo: PhoneNo,
+      //     ),
+      //   ),
+      // );
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => PKBook(),
+          builder: (context) => HomePage(
+            Name: Name,
+            Email: Email,
+            PhoneNo: PhoneNo,
+          ),
         ),
       );
+
+      // ++++++++++++++++++++faile++++++++++++++++++++
       // Navigator.pushReplacementNamed(context, '/Home', arguments: {
       //   'Name': UserData["username"],
       //   'Email': UserData["email"],
@@ -244,7 +270,7 @@ class _LoginState extends State<Login> {
                                             fontSize: 12.0,
                                             fontWeight: FontWeight.bold),
                                       )),
-                            SizedBox(height: 50),
+                                  SizedBox(height: 50),
                                 ],
                               ),
                             ],
