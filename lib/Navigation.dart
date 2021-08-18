@@ -14,7 +14,11 @@ class HomePage extends StatefulWidget {
   final String PhoneNo;
   final String UserProfile;
   // ignore: non_constant_identifier_names
-  HomePage({required this.Name, required this.Email, required this.PhoneNo, required this.UserProfile});
+  HomePage(
+      {required this.Name,
+      required this.Email,
+      required this.PhoneNo,
+      required this.UserProfile});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -23,7 +27,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double value = 0;
   var Navigatio = 0;
- 
+
   @override
   Widget build(BuildContext context) {
     print("================HomePage widget=================>");
@@ -130,14 +134,32 @@ class _HomePageState extends State<HomePage> {
                     ..setEntry(0, 3, 200 * val)
                     ..rotateY((pi / 6) * val),
                   child: Scaffold(
-                      // appBar: AppBar(
-                      //   title: Text('Arya Solutions'),
-                      // ),
+                      appBar: AppBar(
+                        title: Center(child: Text('PK Book')),
+                        leading: IconButton(
+                          icon: const Icon(Icons.menu),
+                          tooltip: 'Main Menu',
+                          onPressed: () {
+                            if (value == 0) {
+                              setState(() {
+                                value = 1;
+                              });
+                            } else {
+                              setState(() {
+                                value = 0;
+                              });
+                            }
+                            print(value);
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //     const SnackBar(content: Text('This is a snackbar')));
+                          },
+                        ),
+                      ),
                       body: PKBook(
                           Name: widget.Name,
                           Email: widget.Email,
                           PhoneNo: widget.PhoneNo,
-                          UserProfile:widget.UserProfile)
+                          UserProfile: widget.UserProfile)
                       // Center(
                       //   child: Text(
                       //     "Pakistan Zindabad",

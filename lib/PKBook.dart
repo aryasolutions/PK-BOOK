@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pk_book/getdata.dart';
 import 'dart:math';
 
 import 'package:pk_book/input.dart';
@@ -10,7 +11,12 @@ class PKBook extends StatefulWidget {
   final String Email;
   final String PhoneNo;
   final String UserProfile;
-  PKBook({required this.Name, required this.Email, required this.PhoneNo, required this.UserProfile, });
+  PKBook({
+    required this.Name,
+    required this.Email,
+    required this.PhoneNo,
+    required this.UserProfile,
+  });
   // PKBook({String, String? Email, String? Name, String? PhoneNo});
 
   @override
@@ -20,6 +26,7 @@ class PKBook extends StatefulWidget {
 class _PKBookState extends State<PKBook> {
   @override
   Widget build(BuildContext context) {
+    var fdata = "";
     print("================PK Book widget=================>");
     print(widget.Name);
     print(widget.Email);
@@ -53,17 +60,27 @@ Lets salute the Nation on Inependence Day. """,
       ],
     ];
 
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    data() async {
-      final DocumentSnapshot snapshot = await firestore
-          .collection("Posts")
-          .doc("User Name12:50:49 Mon 16 Aug")
-          .get();
-      final data = snapshot.data();
-      print(data);
-    }
+    // FirebaseFirestore firestore = FirebaseFirestore.instance;
+    // data() async {
+    //   final DocumentSnapshot snapshot = await firestore
+    //       .collection("Posts")
+    //       .doc("User Name12:50:49 Mon 16 Aug")
+    //       .get();
+    //   final data = snapshot.data();
+    //   print("++++++++++++++++++Firebase Data+++++++++++++++++++++");
+    //   await firestore
+    //       .collection("Posts")
+    //       .get()
+    //       .then((snapshot) => snapshot.docs.forEach((element) {
+    //             var fdata = element.data();
+    //             print(fdata["username"]);
+    //             print(fdata["email"]);
+    //             print(fdata["SMS"]);
+    //           }));
+    //   // print(data);
+    // }
 
-    data();
+    // data();
 //     var Profile = [
 //       "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
 //       "",
@@ -107,55 +124,66 @@ Lets salute the Nation on Inependence Day. """,
 //     }
 // }
     return Scaffold(
-      appBar: AppBar(
-        title: Center(child: Text('PK Book')),
-      ),
+      // appBar: AppBar(
+      //   title: Center(child: Text('PK Book')),
+      //   leading:  IconButton(
+      //       icon: const Icon(Icons.menu),
+      //       tooltip: 'Main Menu',
+      //       onPressed: () {
+
+      //         // ScaffoldMessenger.of(context).showSnackBar(
+      //         //     const SnackBar(content: Text('This is a snackbar')));
+      //       },
+      //     ),
+      // ),
       //  body: ListView.builder(
       //     itemCount: posts.length,
       //     itemBuilder: (context, index) {
       //       return Post(posts[index][0], posts[index][1], posts[index][2],
       //           posts[index][3], vwidth, vhight);
       //     }),
-      body: SingleChildScrollView(
-        child: Center(
-            child: Column(
-          children: [
-            TopBar(),
-            input(
-            Name: widget.Name,
-            Email: widget.Email,
-            PhoneNo: widget.PhoneNo,
-            UserProfile:widget.UserProfile
-            ),
-            SingleChildScrollView(
-                child: Column(
-              children: [
-                // body: ListView.builder(
-                // itemCount: posts.length,
-                // itemBuilder: (context, index) {
-                //   return Post(posts[index][0], posts[index][1], posts[index][2],
-                //       posts[index][3], vwidth, vhight);
-                // }),
-                // Post(Profile[0], Name[0], Time[0], Sms[0], vwidth, vhight),
-                // Post(Profile[0], Name[1], Time[1], Sms[1], vwidth, vhight),
-                // Post(Profile[0], Name[3], Time[3], Sms[3], vwidth, vhight),
-                Post(posts[0][0], posts[0][1], posts[0][2], posts[0][3], vwidth,
-                    vhight),
-                Post(posts[1][0], posts[1][1], posts[1][2], posts[1][3], vwidth,
-                    vhight),
-                Post(posts[2][0], posts[2][1], posts[2][2], posts[2][3], vwidth,
-                    vhight),
-              ],
-            )),
-          ],
-        )),
-      ),
+      body: GetPostData()
+      //  SingleChildScrollView(
+      //   child: Center(
+      //       child: Column(
+      //     children: [
+      //       TopBar(),
+      //       input(
+      //           Name: widget.Name,
+      //           Email: widget.Email,
+      //           PhoneNo: widget.PhoneNo,
+      //           UserProfile: widget.UserProfile),
+      //           GetPostData(),
+      //       // SingleChildScrollView(
+      //       //     child: Column(
+      //       //   children: [
+      //       //     // body: ListView.builder(
+      //       //     // itemCount: posts.length,
+      //       //     // itemBuilder: (context, index) {
+      //       //     //   return Post(posts[index][0], posts[index][1], posts[index][2],
+      //       //     //       posts[index][3], vwidth, vhight);
+      //       //     // }),
+      //       //     // Post(Profile[0], Name[0], Time[0], Sms[0], vwidth, vhight),
+      //       //     // Post(Profile[0], Name[1], Time[1], Sms[1], vwidth, vhight),
+      //       //     // Post(Profile[0], Name[3], Time[3], Sms[3], vwidth, vhight),
+      //       //     Post(posts[0][0], posts[0][1], posts[0][2], posts[0][3], vwidth,
+      //       //         vhight),
+      //       //     Post(posts[1][0], posts[1][1], posts[1][2], posts[1][3], vwidth,
+      //       //         vhight),
+      //       //     Post(posts[2][0], posts[2][1], posts[2][2], posts[2][3], vwidth,
+      //       //         vhight),
+      //       //   ],
+      //       // )),
+         
+      //     ],
+      //   )),
+      // ),
+   
     );
   }
 }
 
-class UserProfile {
-}
+class UserProfile {}
 
 /////////////////////////////////TopBar//////////////////////////////
 class TopBar extends StatefulWidget {

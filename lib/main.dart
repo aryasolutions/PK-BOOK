@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         if (snapshot.hasError) {
           return MaterialApp(
               home: Container(
-            child: Text("1nd"),
+            child: Center(child: Text("error")),
           ));
         }
 
