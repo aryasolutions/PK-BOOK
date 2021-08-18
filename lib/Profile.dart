@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pk_book/login.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+    final String Name;
+  final String Email;
+  final String PhoneNo;
+  final String UserProfile;
+  const ProfilePage({Key? key,  required this.Name, required this.Email, required this.PhoneNo, required this.UserProfile,}) : super(key: key);
 
   @override
-  _ProfileState createState() => _ProfileState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _ProfileState extends State<Profile> {
-  Map data = {};
+class _ProfilePageState extends State<ProfilePage> {
+  // Map data = {};
   String Name = "Null";
   String Email = "Null";
   String photoUrl = 
@@ -21,8 +25,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context)!.settings.arguments as Map;
-    // print('========================+=Profile=+============================');
+    // data = ModalRoute.of(context)!.settings.arguments as Map;
+    // print('========================+=ProfilePage=+============================');
     // print(data);
     // print('======================================================');
     // Add item to a Map in Dart/Flutter
@@ -37,54 +41,55 @@ class _ProfileState extends State<Profile> {
 
     // print('1st Index =====> ${data['Name']}'); // two
     // print('2nd Index =====> ${data['Email']}');
-    setState(() {
-      if (data['Name'] != null) {
-        Name = data['Name'];
-      }
-      if (data['Email'] != null) {
-        Email = data['Email'];
-      }      
-      if (data['PhoneNo'] != null) {
-        PhoneNo = data['PhoneNo'];
-      }
-      if (data['Profile'] != null) {
-        photoUrl = data['Profile'];
-        // print("===================================$photoUrl");
-      }
-    });
+    // setState(() {
+    //   if (data['Name'] != null) {
+    //     Name = data['Name'];
+    //   }
+    //   if (data['Email'] != null) {
+    //     Email = data['Email'];
+    //   }      
+    //   if (data['PhoneNo'] != null) {
+    //     PhoneNo = data['PhoneNo'];
+    //   }
+    //   if (data['Profile'] != null) {
+    //     photoUrl = data['Profile'];
+    //     // print("===================================$photoUrl");
+    //   }
+    // });
     Log_Out() {
-      setState(() {
-        data.remove('Name');
-        data.remove('Email');
-        data.remove('Profile');
-        Name = "";
-        Email = "";
-      });
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Login(),
-        ),
-      );
-      Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
-      AlertDialog alert = AlertDialog(
-        title: Center(child: Text("Logout Successful")),
-        content: Text("You have successful loggedout"),
-        actions: [
-          okButton,
-        ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
+      // setState(() {
+      //   data.remove('Name');
+      //   data.remove('Email');
+      //   data.remove('Profile');
+      //   Name = "";
+      //   Email = "";
+      // });
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (context) => Login(),
+      //   ),
+      // );
+      // Widget okButton = TextButton(
+      //   child: Text("OK"),
+      //   onPressed: () {
+      //     Navigator.of(context).pop(); // dismiss dialog
+      //   },
+      // );
+      // AlertDialog alert = AlertDialog(
+      //   title: Center(child: Text("Logout Successful")),
+      //   content: Text("You have successful loggedout"),
+      //   actions: [
+      //     okButton,
+      //   ],
+      // );
+      // showDialog(
+      //   context: context,
+      //   builder: (BuildContext context) {
+      //     return alert;
+      //   },
+      // );
+    
     }
 
     return MaterialApp(
@@ -126,7 +131,7 @@ class _ProfileState extends State<Profile> {
                     // color: Colors.black38,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage("$photoUrl"), fit: BoxFit.cover),
+                          image: NetworkImage("${widget.UserProfile}"), fit: BoxFit.cover),
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -164,7 +169,7 @@ class _ProfileState extends State<Profile> {
                                           ),
                                         ),
                                         Text(
-                                          Name,
+                                          widget.Name,
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             fontSize: 16,
@@ -246,7 +251,7 @@ class _ProfileState extends State<Profile> {
                                           ),
                                         ),
                                         Text(
-                                          Email,
+                                          widget.Email,
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             fontSize: 16,
@@ -326,7 +331,7 @@ class _ProfileState extends State<Profile> {
                                           ),
                                         ),
                                         Text(
-                                          PhoneNo,
+                                          widget.PhoneNo,
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             fontSize: 16,
@@ -475,7 +480,7 @@ class _ProfileState extends State<Profile> {
                      padding: const EdgeInsets.only(top: 18.0),
                      child: Align(
             alignment: FractionalOffset.bottomCenter,
-              child: Text('Logged In with ${data['provider']}',
+              child: Text('Logged In with Email',
               style: TextStyle(
                 color: Colors.redAccent,
                 fontSize: 18,

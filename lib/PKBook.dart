@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pk_book/Profile.dart';
 import 'package:pk_book/getdata.dart';
 import 'dart:math';
 
@@ -32,6 +33,7 @@ class _PKBookState extends State<PKBook> {
     print(widget.Email);
     print(widget.PhoneNo);
     // print(widget.);
+ 
     List<dynamic> posts = [
       [
         "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
@@ -124,66 +126,84 @@ Lets salute the Nation on Inependence Day. """,
 //     }
 // }
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Center(child: Text('PK Book')),
-      //   leading:  IconButton(
-      //       icon: const Icon(Icons.menu),
-      //       tooltip: 'Main Menu',
-      //       onPressed: () {
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: GestureDetector(
+            onTap: () {
+              print("Container was tapped");
+            },
+            child: Container(
+              width: 60,
+              height: 60,
+              child: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: CircleAvatar(
+                  radius: 50.0,
+                  backgroundImage: NetworkImage(
+                    widget.UserProfile,
+                  ),
+                ),
+              ),
+            ),
+          ),
 
-      //         // ScaffoldMessenger.of(context).showSnackBar(
-      //         //     const SnackBar(content: Text('This is a snackbar')));
-      //       },
-      //     ),
-      // ),
-      //  body: ListView.builder(
-      //     itemCount: posts.length,
-      //     itemBuilder: (context, index) {
-      //       return Post(posts[index][0], posts[index][1], posts[index][2],
-      //           posts[index][3], vwidth, vhight);
-      //     }),
-      body: GetPostData()
-      //  SingleChildScrollView(
-      //   child: Center(
-      //       child: Column(
-      //     children: [
-      //       TopBar(),
-      //       input(
-      //           Name: widget.Name,
-      //           Email: widget.Email,
-      //           PhoneNo: widget.PhoneNo,
-      //           UserProfile: widget.UserProfile),
-      //           GetPostData(),
-      //       // SingleChildScrollView(
-      //       //     child: Column(
-      //       //   children: [
-      //       //     // body: ListView.builder(
-      //       //     // itemCount: posts.length,
-      //       //     // itemBuilder: (context, index) {
-      //       //     //   return Post(posts[index][0], posts[index][1], posts[index][2],
-      //       //     //       posts[index][3], vwidth, vhight);
-      //       //     // }),
-      //       //     // Post(Profile[0], Name[0], Time[0], Sms[0], vwidth, vhight),
-      //       //     // Post(Profile[0], Name[1], Time[1], Sms[1], vwidth, vhight),
-      //       //     // Post(Profile[0], Name[3], Time[3], Sms[3], vwidth, vhight),
-      //       //     Post(posts[0][0], posts[0][1], posts[0][2], posts[0][3], vwidth,
-      //       //         vhight),
-      //       //     Post(posts[1][0], posts[1][1], posts[1][2], posts[1][3], vwidth,
-      //       //         vhight),
-      //       //     Post(posts[2][0], posts[2][1], posts[2][2], posts[2][3], vwidth,
-      //       //         vhight),
-      //       //   ],
-      //       // )),
-         
-      //     ],
-      //   )),
-      // ),
-   
-    );
+          title: Center(
+            child: input(
+                Name: widget.Name,
+                Email: widget.Email,
+                PhoneNo: widget.PhoneNo,
+                UserProfile: widget.UserProfile),
+          ),
+          // title: Center(child: Text('PK Book')),
+          // leading:  IconButton(
+          //     icon: const Icon(Icons.menu),
+          //     tooltip: 'Main Menu',
+          //     onPressed: () {
+
+          //       // ScaffoldMessenger.of(context).showSnackBar(
+          //       //     const SnackBar(content: Text('This is a snackbar')));
+          //     },
+          //   ),
+        ),
+        body: GetPostData()
+        //  SingleChildScrollView(
+        //   child: Center(
+        //       child: Column(
+        //     children: [
+        //       TopBar(),
+        //       input(
+        //           Name: widget.Name,
+        //           Email: widget.Email,
+        //           PhoneNo: widget.PhoneNo,
+        //           UserProfile: widget.UserProfile),
+        //           GetPostData(),
+        //       // SingleChildScrollView(
+        //       //     child: Column(
+        //       //   children: [
+        //       //     // body: ListView.builder(
+        //       //     // itemCount: posts.length,
+        //       //     // itemBuilder: (context, index) {
+        //       //     //   return Post(posts[index][0], posts[index][1], posts[index][2],
+        //       //     //       posts[index][3], vwidth, vhight);
+        //       //     // }),
+        //       //     // Post(Profile[0], Name[0], Time[0], Sms[0], vwidth, vhight),
+        //       //     // Post(Profile[0], Name[1], Time[1], Sms[1], vwidth, vhight),
+        //       //     // Post(Profile[0], Name[3], Time[3], Sms[3], vwidth, vhight),
+        //       //     Post(posts[0][0], posts[0][1], posts[0][2], posts[0][3], vwidth,
+        //       //         vhight),
+        //       //     Post(posts[1][0], posts[1][1], posts[1][2], posts[1][3], vwidth,
+        //       //         vhight),
+        //       //     Post(posts[2][0], posts[2][1], posts[2][2], posts[2][3], vwidth,
+        //       //         vhight),
+        //       //   ],
+        //       // )),
+        //     ],
+        //   )),
+        // ),
+
+        );
   }
 }
-
-class UserProfile {}
 
 /////////////////////////////////TopBar//////////////////////////////
 class TopBar extends StatefulWidget {
@@ -257,7 +277,17 @@ class _TopBarState extends State<TopBar> {
 final _random = Random();
 
 Widget Post(String Profile, String Name, String Time, String Sms, var vwidth,
-    var vhight) {
+    var vhight, var context) {
+         gotoprofile(){ Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfilePage(
+                        Name: Name,
+                        Email: "Email",
+                        PhoneNo: "PhoneNo",
+                        UserProfile: Profile),
+                  ),
+                );}
   return Container(
     // width: vwidth - 20,
     // height: vwidth,
@@ -274,14 +304,17 @@ Widget Post(String Profile, String Name, String Time, String Sms, var vwidth,
         ),
         Row(
           children: [
-            Container(
-              width: 60,
-              height: 60,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  radius: 50.0,
-                  backgroundImage: NetworkImage(Profile),
+            GestureDetector(
+              onTap: gotoprofile,
+              child: Container(
+                width: 60,
+                height: 60,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    radius: 50.0,
+                    backgroundImage: NetworkImage(Profile),
+                  ),
                 ),
               ),
             ),
@@ -333,7 +366,11 @@ Widget Post(String Profile, String Name, String Time, String Sms, var vwidth,
                 child: Padding(
               padding: const EdgeInsets.only(
                   left: 20, right: 20, top: 70, bottom: 70),
-              child: Text(Sms, textAlign: TextAlign.center),
+              child: Text(
+                Sms,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+              ),
             )),
           ),
         ),

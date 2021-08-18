@@ -41,7 +41,7 @@ class _GetPostDataState extends State<GetPostData> {
                     // Text(data['PhoneNo']),
                     // Text(data['Date']),
                     Post(data['UserProfile'], data['username'], data['Date'],
-                        data['SMS'], vwidth, vhight)
+                        data['SMS'], vwidth, vhight, context)
 // String Profile, String Name, String Time, String Sms, var vwidth,
                   ],
                 ),

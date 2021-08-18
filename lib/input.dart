@@ -92,21 +92,10 @@ class _inputState extends State<input> {
 
     return Row(
       children: [
+      
         Container(
-          width: 60,
-          height: 60,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              radius: 50.0,
-              backgroundImage: NetworkImage(
-                "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
-              ),
-            ),
-          ),
-        ),
-        Container(
-          width: vwidth / 1.29,
+          width: vwidth / 1.35,
+          // width: vwidth / 1.29,
           // height: 12,
           child: TextButton(
               onPressed: () {
