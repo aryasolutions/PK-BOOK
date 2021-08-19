@@ -5,19 +5,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pk_book/PKBook.dart';
 
 class GetPostData extends StatefulWidget {
+  final String username;
+  GetPostData({required this.username});
+
   @override
   _GetPostDataState createState() => _GetPostDataState();
 }
 
 class _GetPostDataState extends State<GetPostData> {
   final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
-      .collection('Posts').orderBy('index',descending: true)
+      .collection('Posts')
+      .orderBy('index', descending: true)
       // .where('index', isGreaterThan: '3')
-        // .limitToLast(2)
+      // .limitToLast(2)
       .snapshots();
 
   @override
   Widget build(BuildContext context) {
+    String PhoneNo = "Show only Owner";
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
         stream: _usersStream,
@@ -43,8 +48,17 @@ class _GetPostDataState extends State<GetPostData> {
                     // Text(data['SMS']),
                     // Text(data['PhoneNo']),
                     // Text(data['Date']),
-                    Post(data['UserProfile'], data['username'], data['Date'],
-                        data['SMS'], vwidth, vhight, context)
+                    Post(
+                        data['UserProfile'],
+                        widget.username,
+                        data['username'],
+                        data['email'],
+                        data['Date'],
+                        data['SMS'],
+                        data['PhoneNo'],
+                        vwidth,
+                        vhight,
+                        context)
 // String Profile, String Name, String Time, String Sms, var vwidth,
                   ],
                 ),

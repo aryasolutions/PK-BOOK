@@ -41,10 +41,9 @@ class _HomePageState extends State<HomePage> {
     Logout()
   ];
 
-
   @override
   Widget build(BuildContext context) {
-    print("================HomePage widget=========$_selectedIndex========>");
+    // print("================HomePage widget=========$_selectedIndex========>");
     // print(widget.Name);
     // print(widget.Email);
     // print(widget.PhoneNo);
@@ -100,7 +99,18 @@ class _HomePageState extends State<HomePage> {
                     child: ListView(
                   children: [
                     ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(
+                                Name: widget.Name,
+                                Email: widget.Email,
+                                PhoneNo: widget.PhoneNo,
+                                UserProfile: widget.UserProfile),
+                          ),
+                        );
+                      },
                       leading: Icon(Icons.home, color: Colors.white),
                       title: Text(
                         'Home',
@@ -109,9 +119,14 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       onTap: () {
-                        setState(() {
-                          _selectedIndex = 1;
-                        });
+                        ProfilePage(
+                            Name: widget.Name,
+                            Email: widget.Email,
+                            PhoneNo: widget.PhoneNo,
+                            UserProfile: widget.UserProfile);
+                        // setState(() {
+                        //   _selectedIndex = 1;
+                        // });
                       },
                       leading: Icon(Icons.person, color: Colors.white),
                       title: Text(
@@ -121,9 +136,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       onTap: () {
-                        setState(() {
-                          _selectedIndex = 0;
-                        });
+                        Setting();
+                        // setState(() {
+                        //   _selectedIndex = 0;
+                        // });
                       },
                       leading: Icon(Icons.settings, color: Colors.white),
                       title: Text(
@@ -133,9 +149,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       onTap: () {
-                        setState(() {
-                          _selectedIndex = 2;
-                        });
+                        Logout();
+                        // setState(() {
+                        //   _selectedIndex = 2;
+                        // });
                       },
                       leading: Icon(Icons.logout, color: Colors.white),
                       title: Text(
@@ -160,34 +177,33 @@ class _HomePageState extends State<HomePage> {
                     ..setEntry(0, 3, 200 * val)
                     ..rotateY((pi / 6) * val),
                   child: Scaffold(
-                    appBar: AppBar(
-                      title: Center(child: Text('PK Book')),
-                      leading: IconButton(
-                        icon: const Icon(Icons.menu),
-                        tooltip: 'Main Menu',
-                        onPressed: () {
-                          if (value == 0) {
-                            setState(() {
-                              value = 1;
-                            });
-                          } else {
-                            setState(() {
-                              value = 0;
-                            });
-                          }
-                          print(value);
-                          // ScaffoldMessenger.of(context).showSnackBar(
-                          //     const SnackBar(content: Text('This is a snackbar')));
-                        },
+                      appBar: AppBar(
+                        title: Center(child: Text('LinkedUp')),
+                        leading: IconButton(
+                          icon: const Icon(Icons.menu),
+                          tooltip: 'Main Menu',
+                          onPressed: () {
+                            if (value == 0) {
+                              setState(() {
+                                value = 1;
+                              });
+                            } else {
+                              setState(() {
+                                value = 0;
+                              });
+                            }
+                            print(value);
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //     const SnackBar(content: Text('This is a snackbar')));
+                          },
+                        ),
                       ),
-                    ),
-                    // body: _widgetOptions.elementAt(_selectedIndex),
-                    body: PKBook(
-                        Name: widget.Name,
-                        Email: widget.Email,
-                        PhoneNo: widget.PhoneNo,
-                        UserProfile: widget.UserProfile)
-                  ),
+                      // body: _widgetOptions.elementAt(_selectedIndex),
+                      body: PKBook(
+                          Name: widget.Name,
+                          Email: widget.Email,
+                          PhoneNo: widget.PhoneNo,
+                          UserProfile: widget.UserProfile)),
                 ));
               }),
           GestureDetector(

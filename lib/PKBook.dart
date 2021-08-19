@@ -33,34 +33,34 @@ class _PKBookState extends State<PKBook> {
     print(widget.Email);
     print(widget.PhoneNo);
     // print(widget.);
- 
-    List<dynamic> posts = [
-      [
-        "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
-        "Mudassir Mukhtar",
-        "56m",
-        "I Love Pakistan",
-        "Following"
-      ],
-      [
-        "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
-        "Muhammad AZEEM",
-        "5m",
-        """I Love Pakistan, Pakistan Meri Jaan Ha, Pakistan Mujh Ko Dil O Jan Sa Piara Ha, Pakistan Zindabad.
-Happy Independence Day """,
-        "Following"
-      ],
-      [
-        "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
-        "Muhammad Saim",
-        "5h",
-        """Freedom in the Mind,
-Faith in the words..
-Pride in our Souls..
-Lets salute the Nation on Inependence Day. """,
-        "For You"
-      ],
-    ];
+
+//     List<dynamic> posts = [
+//       [
+//         "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
+//         "Mudassir Mukhtar",
+//         "56m",
+//         "I Love Pakistan",
+//         "Following"
+//       ],
+//       [
+//         "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
+//         "Muhammad AZEEM",
+//         "5m",
+//         """I Love Pakistan, Pakistan Meri Jaan Ha, Pakistan Mujh Ko Dil O Jan Sa Piara Ha, Pakistan Zindabad.
+// Happy Independence Day """,
+//         "Following"
+//       ],
+//       [
+//         "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=",
+//         "Muhammad Saim",
+//         "5h",
+//         """Freedom in the Mind,
+// Faith in the words..
+// Pride in our Souls..
+// Lets salute the Nation on Inependence Day. """,
+//         "For You"
+//       ],
+//     ];
 
     // FirebaseFirestore firestore = FirebaseFirestore.instance;
     // data() async {
@@ -130,7 +130,16 @@ Lets salute the Nation on Inependence Day. """,
           backgroundColor: Colors.white,
           leading: GestureDetector(
             onTap: () {
-              print("Container was tapped");
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(
+                      Name: widget.Name,
+                      Email: widget.Email,
+                      PhoneNo: widget.PhoneNo,
+                      UserProfile: widget.UserProfile),
+                ),
+              );
             },
             child: Container(
               width: 60,
@@ -165,7 +174,9 @@ Lets salute the Nation on Inependence Day. """,
           //     },
           //   ),
         ),
-        body: GetPostData()
+        body: GetPostData(
+          username: widget.Name,
+        )
         //  SingleChildScrollView(
         //   child: Center(
         //       child: Column(
@@ -276,18 +287,31 @@ class _TopBarState extends State<TopBar> {
 
 final _random = Random();
 
-Widget Post(String Profile, String Name, String Time, String Sms, var vwidth,
-    var vhight, var context) {
-         gotoprofile(){ Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProfilePage(
-                        Name: Name,
-                        Email: "Email",
-                        PhoneNo: "PhoneNo",
-                        UserProfile: Profile),
-                  ),
-                );}
+Widget Post(
+    String Profile,
+    String username,
+    String Name,
+    String Email,
+    String Time,
+    String Sms,
+    String PhoneNo,
+    var vwidth,
+    var vhight,
+    var context) {
+  String PPhoneNo = 'Show Only me';
+  // if (username == Name) {
+  //       PPhoneNo = PhoneNo;
+  // }
+  gotoprofile() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfilePage(
+            Name: Name, Email: Email, PhoneNo: PPhoneNo, UserProfile: Profile),
+      ),
+    );
+  }
+
   return Container(
     // width: vwidth - 20,
     // height: vwidth,

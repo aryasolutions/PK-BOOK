@@ -1,12 +1,20 @@
+import 'package:firebase/firebase.dart';
 import 'package:flutter/material.dart';
+import 'package:pk_book/PKBook.dart';
 import 'package:pk_book/login.dart';
 
 class ProfilePage extends StatefulWidget {
-    final String Name;
+  final String Name;
   final String Email;
   final String PhoneNo;
   final String UserProfile;
-  const ProfilePage({Key? key,  required this.Name, required this.Email, required this.PhoneNo, required this.UserProfile,}) : super(key: key);
+  const ProfilePage({
+    Key? key,
+    required this.Name,
+    required this.Email,
+    required this.PhoneNo,
+    required this.UserProfile,
+  }) : super(key: key);
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -16,12 +24,10 @@ class _ProfilePageState extends State<ProfilePage> {
   // Map data = {};
   String Name = "Null";
   String Email = "Null";
-  String photoUrl = 
+  String photoUrl =
       "https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1214428300?k=6&m=1214428300&s=170667a&w=0&h=hMQs-822xLWFz66z3Xfd8vPog333rNFHU6Q_kc9Sues=";
   String PhoneNo = "03XX-XXXXXXX";
   String About = "I am Muslim";
-  
-
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
     //   }
     //   if (data['Email'] != null) {
     //     Email = data['Email'];
-    //   }      
+    //   }
     //   if (data['PhoneNo'] != null) {
     //     PhoneNo = data['PhoneNo'];
     //   }
@@ -89,7 +95,6 @@ class _ProfilePageState extends State<ProfilePage> {
       //     return alert;
       //   },
       // );
-    
     }
 
     return MaterialApp(
@@ -98,21 +103,32 @@ class _ProfilePageState extends State<ProfilePage> {
         appBar: AppBar(
           centerTitle: true,
           leading: IconButton(
-              onPressed: Log_Out,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PKBook(
+                        Name: widget.Name,
+                        Email: widget.Email,
+                        PhoneNo: widget.PhoneNo,
+                        UserProfile: widget.UserProfile),
+                  ),
+                );
+              },
               icon: Icon(
                 Icons.arrow_back,
               )),
           // title: Text('Logged In with ${data['provider']}'),
           title: Text('Profile'),
-          actions: [
-            IconButton(
-                onPressed: Log_Out,
-                icon: Icon(
-                  Icons.logout,
-                  size: 35,
-                  color: Colors.red,
-                ))
-          ],
+          // actions: [
+          //   IconButton(
+          //       onPressed: Log_Out,
+          //       icon: Icon(
+          //         Icons.logout,
+          //         size: 35,
+          //         color: Colors.red,
+          //       ))
+          // ],
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -131,7 +147,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     // color: Colors.black38,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage("${widget.UserProfile}"), fit: BoxFit.cover),
+                          image: NetworkImage("${widget.UserProfile}"),
+                          fit: BoxFit.cover),
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -153,12 +170,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                   size: 40,
                                 ),
                                 Container(
-                                  width:  MediaQuery.of(context).size.width / 1.4,
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.4,
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8.0),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Name",
@@ -179,54 +199,55 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ),
                                 ),
-                                
-                                   Padding(
-                                     padding: const EdgeInsets.only(left: 8.0),
-                                     child: IconButton(
-                                      alignment: Alignment.bottomRight,
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: Text("Enter Your Name"),
-                                                content: TextField(
-                                                  decoration: InputDecoration(
-                                                      // border: OutlineInputBorder(),
-                                                      hintText: Name),
-                                                  onChanged: (value) {
-                                                    Name = value;
-                                                  },
-                                                ),
-                                                actions: [
-                                                  ElevatedButton(
-                                                      onPressed: () {
-                                                        Navigator.of(context).pop();
-                                                        setState(() {});
-                                                      },
-                                                      child: Center(
-                                                          child: Text("Update")))
-                                                ],
-                                              );
-                                            });
-                                      },
-                                      icon: Icon(
-                                        Icons.edit,
-                                        color: Colors.black38,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: IconButton(
+                                    alignment: Alignment.bottomRight,
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Text("Enter Your Name"),
+                                              content: TextField(
+                                                decoration: InputDecoration(
+                                                    // border: OutlineInputBorder(),
+                                                    hintText: Name),
+                                                onChanged: (value) {
+                                                  Name = value;
+                                                },
+                                              ),
+                                              actions: [
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      setState(() {});
+                                                    },
+                                                    child: Center(
+                                                        child: Text("Update")))
+                                              ],
+                                            );
+                                          });
+                                    },
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: Colors.black38,
+                                    ),
                                   ),
-                                   ),
+                                ),
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 20,bottom: 20),
+                              padding:
+                                  const EdgeInsets.only(top: 20, bottom: 20),
                               child: Container(
                                   width: MediaQuery.of(context).size.width - 20,
                                   height: 1,
                                   color: Colors.black12),
                             ),
                             // // // // // // // // // // // // // // // // // // // Email // // // // // // // // // // // // // // // // // //
-                
+
                             Row(
                               children: [
                                 Icon(
@@ -235,12 +256,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                   size: 40,
                                 ),
                                 Container(
-                                 width:  MediaQuery.of(context).size.width / 1.4,
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.4,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Email",
@@ -261,46 +285,48 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ),
                                 ),
-                                
-                                   Padding(
-                                     padding: const EdgeInsets.only(left: 8.0),
-                                     child: IconButton(
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: Text("Enter Your Email"),
-                                                content: TextField(
-                                                  decoration: InputDecoration(
-                                                      // border: OutlineInputBorder(),
-                                                      hintText: "XXXXXXXXX@gmail.com"),
-                                                  onChanged: (value) {
-                                                    Email = value;
-                                                  },
-                                                ),
-                                                actions: [
-                                                  ElevatedButton(
-                                                      onPressed: () {
-                                                        Navigator.of(context).pop();
-                                                        setState(() {});
-                                                      },
-                                                      child: Center(
-                                                          child: Text("Update")))
-                                                ],
-                                              );
-                                            });
-                                      },
-                                      icon: Icon(
-                                        Icons.edit,
-                                        color: Colors.black38,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Text("Enter Your Email"),
+                                              content: TextField(
+                                                decoration: InputDecoration(
+                                                    // border: OutlineInputBorder(),
+                                                    hintText:
+                                                        "XXXXXXXXX@gmail.com"),
+                                                onChanged: (value) {
+                                                  Email = value;
+                                                },
+                                              ),
+                                              actions: [
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      setState(() {});
+                                                    },
+                                                    child: Center(
+                                                        child: Text("Update")))
+                                              ],
+                                            );
+                                          });
+                                    },
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: Colors.black38,
+                                    ),
                                   ),
-                                   ),
+                                ),
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 20,bottom: 20),
+                              padding:
+                                  const EdgeInsets.only(top: 20, bottom: 20),
                               child: Container(
                                   width: MediaQuery.of(context).size.width - 20,
                                   height: 1,
@@ -315,12 +341,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                   size: 40,
                                 ),
                                 Container(
-                                   width:  MediaQuery.of(context).size.width / 1.4,
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.4,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Phone Number",
@@ -341,46 +370,47 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ),
                                 ),
-                                
-                                   Padding(
-                                     padding: const EdgeInsets.only(left: 8.0),
-                                     child: IconButton(
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: Text("Enter Your Number"),
-                                                content: TextField(
-                                                  decoration: InputDecoration(
-                                                      // border: OutlineInputBorder(),
-                                                      hintText: "03XX-XXXXXXX"),
-                                                  onChanged: (value) {
-                                                    PhoneNo = value;
-                                                  },
-                                                ),
-                                                actions: [
-                                                  ElevatedButton(
-                                                      onPressed: () {
-                                                        Navigator.of(context).pop();
-                                                        setState(() {});
-                                                      },
-                                                      child: Center(
-                                                          child: Text("Update")))
-                                                ],
-                                              );
-                                            });
-                                      },
-                                      icon: Icon(
-                                        Icons.edit,
-                                        color: Colors.black38,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Text("Enter Your Number"),
+                                              content: TextField(
+                                                decoration: InputDecoration(
+                                                    // border: OutlineInputBorder(),
+                                                    hintText: "03XX-XXXXXXX"),
+                                                onChanged: (value) {
+                                                  PhoneNo = value;
+                                                },
+                                              ),
+                                              actions: [
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      setState(() {});
+                                                    },
+                                                    child: Center(
+                                                        child: Text("Update")))
+                                              ],
+                                            );
+                                          });
+                                    },
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: Colors.black38,
+                                    ),
                                   ),
-                                   ),
+                                ),
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 20,bottom: 20),
+                              padding:
+                                  const EdgeInsets.only(top: 20, bottom: 20),
                               child: Container(
                                   width: MediaQuery.of(context).size.width - 20,
                                   height: 1,
@@ -395,12 +425,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                   size: 40,
                                 ),
                                 Container(
-                                     width:  MediaQuery.of(context).size.width / 1.4,
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.4,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "About",
@@ -421,73 +454,75 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ),
                                 ),
-    
-                                   Padding(
-                                     padding: const EdgeInsets.only(left: 8.0),
-                                     child: IconButton(
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: Text("Enter Your Number"),
-                                                content: TextField(
-                                                  decoration: InputDecoration(
-                                                      // border: OutlineInputBorder(),
-                                                      hintText: About),
-                                                  onChanged: (value) {
-                                                    About = value;
-                                                  },
-                                                ),
-                                                actions: [
-                                                  ElevatedButton(
-                                                      onPressed: () {
-                                                        Navigator.of(context).pop();
-                                                        setState(() {});
-                                                      },
-                                                      child: Center(
-                                                          child: Text("Update")))
-                                                ],
-                                              );
-                                            });
-                                      },
-                                      icon: Icon(
-                                        Icons.edit,
-                                        color: Colors.black38,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Text("Enter Your Number"),
+                                              content: TextField(
+                                                decoration: InputDecoration(
+                                                    // border: OutlineInputBorder(),
+                                                    hintText: About),
+                                                onChanged: (value) {
+                                                  About = value;
+                                                },
+                                              ),
+                                              actions: [
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      setState(() {});
+                                                    },
+                                                    child: Center(
+                                                        child: Text("Update")))
+                                              ],
+                                            );
+                                          });
+                                    },
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: Colors.black38,
+                                    ),
                                   ),
-                                   ),
+                                ),
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 20,bottom: 20),
+                              padding:
+                                  const EdgeInsets.only(top: 20, bottom: 20),
                               child: Container(
                                   width: MediaQuery.of(context).size.width - 20,
                                   height: 1,
                                   color: Colors.black12),
                             ),
                             // // // // // // // // // // // // // // // // // // //  // // // // // // // // // // // // // // // // // //
-                
                           ],
                         ),
                       ],
                     ),
                   ),
                 ),
-                  //  Text('Logged In with ${data['provider']}',
-                  //  style: TextStyle(),),
-                   Padding(
-                     padding: const EdgeInsets.only(top: 18.0),
-                     child: Align(
-            alignment: FractionalOffset.bottomCenter,
-              child: Text('Logged In with Email',
-              style: TextStyle(
-                color: Colors.redAccent,
-                fontSize: 18,
-                fontWeight: FontWeight.bold),),
-          ),
-                   ),
-            ],
+                //  Text('Logged In with ${data['provider']}',
+                //  style: TextStyle(),),
+                Padding(
+                  padding: const EdgeInsets.only(top: 18.0),
+                  child: Align(
+                    alignment: FractionalOffset.bottomCenter,
+                    child: Text(
+                      'Logged In with Email',
+                      style: TextStyle(
+                          color: Colors.redAccent,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

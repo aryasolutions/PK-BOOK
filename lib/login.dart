@@ -62,7 +62,7 @@ class _LoginState extends State<Login> {
         PhoneNo = UserData["PhoneNo"];
         UserProfile = UserData["UserProfile"];
       });
-      print({Name, Email, PhoneNo,"pic",UserProfile});
+      print({Name, Email, PhoneNo, "pic", UserProfile});
       // Navigator.push(
       //   context,
       //   MaterialPageRoute(
@@ -77,11 +77,10 @@ class _LoginState extends State<Login> {
         context,
         MaterialPageRoute(
           builder: (context) => HomePage(
-            Name: Name,
-            Email: Email,
-            PhoneNo: PhoneNo,
-            UserProfile:UserProfile
-          ),
+              Name: Name,
+              Email: Email,
+              PhoneNo: PhoneNo,
+              UserProfile: UserProfile),
         ),
       );
 
@@ -147,7 +146,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Arya Solutions',
+      title: 'LinkedUp',
       home: Scaffold(
         // appBar: AppBar(
         //   centerTitle: true,
@@ -181,7 +180,7 @@ class _LoginState extends State<Login> {
                             children: [
                               SizedBox(height: 30),
                               Text(
-                                'Welcome to PK Book',
+                                'Welcome to LinkedUp',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               SizedBox(height: 30),

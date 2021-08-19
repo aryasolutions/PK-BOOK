@@ -112,7 +112,7 @@ class _RegistrationState extends State<Registration> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // initialRoute: '/signup',
-      title: 'Arya Solutions',
+      title: 'LinkedUp',
       home: Scaffold(
         // appBar: AppBar(
         //   centerTitle: true,
@@ -145,7 +145,7 @@ class _RegistrationState extends State<Registration> {
                             children: [
                               SizedBox(height: 30),
                               Text(
-                                'Welcome to Arya Solutions',
+                                'Welcome to LinkedUp',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               SizedBox(height: 30),

@@ -12,7 +12,7 @@ class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child:Text("Setting") ,
+        child:Center(child: Text("Setting")) ,
       ),
     );
   }
