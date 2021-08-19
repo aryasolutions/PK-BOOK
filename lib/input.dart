@@ -22,13 +22,32 @@ class input extends StatefulWidget {
 }
 
 class _inputState extends State<input> {
+  int largeindex = 0;
   @override
   Widget build(BuildContext context) {
-    print("================Input widget=================>");
-    print(widget.Name);
-    print(widget.Email);
-    print(widget.PhoneNo);
-    print(widget.UserProfile);
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    data() async {
+      await firestore
+          .collection("Posts")
+          .get()
+          .then((snapshot) => snapshot.docs.forEach((element) {
+                var fdata = element.data();
+                if (fdata["index"] >= largeindex) {
+                  setState(() {
+                    largeindex = fdata["index"];
+                    largeindex++;
+                  });
+                }
+              }));
+      print(
+          "++++++++++++++++++Firebase largeindex $largeindex+++++++++++++++++++++");
+    }
+
+    // print("================Input widget=================>");
+    // print(widget.Name);
+    // print(widget.Email);
+    // print(widget.PhoneNo);
+    // print(widget.UserProfile);
     String UserName = "User Name";
     String UserEmail = "Abc@gmail.com";
     String PhoneNo = "03XX-XXXXXXXX";
@@ -45,7 +64,7 @@ class _inputState extends State<input> {
 
     void UploadPost() async {
       // print("objectobjectobjectobjectobjectobjectobjectobjectobject");
-      final String SMS = SMScontroller.text;
+      String SMS = SMScontroller.text;
       try {
         FirebaseFirestore firestore = FirebaseFirestore.instance;
         DateTime now = DateTime.now();
@@ -57,7 +76,11 @@ class _inputState extends State<input> {
           "PhoneNo": PhoneNo,
           "SMS": SMS,
           "Date": formattedDate,
-          "UserProfile" : UserProfile,
+          "index": largeindex,
+          "UserProfile": UserProfile,
+        });
+        setState(() {
+          SMS = '';
         });
         // Navigator.pushReplacementNamed(context, '/Home', arguments: {
         //   'Name': username,
@@ -92,13 +115,14 @@ class _inputState extends State<input> {
 
     return Row(
       children: [
-      
         Container(
           width: vwidth / 1.35,
           // width: vwidth / 1.29,
           // height: 12,
           child: TextButton(
               onPressed: () {
+                data();
+
                 Widget okButton = ElevatedButton(
                   child: Text("Post"),
                   onPressed: UploadPost,
@@ -119,7 +143,7 @@ class _inputState extends State<input> {
                           height: 200,
                           child: TextFormField(
                             minLines: 1,
-                            maxLines: 8,
+                            maxLines: 6,
                             controller: SMScontroller,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),

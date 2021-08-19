@@ -10,8 +10,11 @@ class GetPostData extends StatefulWidget {
 }
 
 class _GetPostDataState extends State<GetPostData> {
-  final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('Posts').snapshots();
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+      .collection('Posts').orderBy('index',descending: true)
+      // .where('index', isGreaterThan: '3')
+        // .limitToLast(2)
+      .snapshots();
 
   @override
   Widget build(BuildContext context) {

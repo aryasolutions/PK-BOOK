@@ -158,20 +158,21 @@ class _RegistrationState extends State<Registration> {
                                 ),
                               ),
                               SizedBox(height: 15),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
+                              TextField(
                                   controller: useremailcontroller,
                                   decoration: InputDecoration(
                                       border: OutlineInputBorder(),
                                       hintText: "Email",
                                       labelText: "Email",
-                                      suffixIcon: TextButton(
-                                        child: Text("Sent OTP"),
-                                        onPressed: () => sentOTP(),
+                                      suffixIcon: Padding(
+                                        padding: const EdgeInsets.only(right: 12),
+                                        child: TextButton(
+                                          child: Text("Sent OTP"),
+                                          onPressed: () => sentOTP(),
+                                        ),
                                       )),
                                 ),
-                              ),
+                            
                               SizedBox(height: 15),
                               TextField(
                                 controller: otpcontroller,

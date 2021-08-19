@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pk_book/Logout.dart';
 import 'package:pk_book/Navigation.dart';
 import 'dart:math';
 
 import 'package:pk_book/PKBook.dart';
 import 'package:pk_book/Profile.dart';
+import 'package:pk_book/Setting.dart';
 import 'package:pk_book/login.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,14 +29,26 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double value = 0;
   var Navigatio = 0;
+  int _selectedIndex = 0;
+  String Name = '';
+  static const List<Widget> _widgetOptions = <Widget>[
+    Setting(),
+    ProfilePage(
+        Name: "Name",
+        Email: "Email",
+        PhoneNo: 'PhoneNo',
+        UserProfile: 'UserProfile'),
+    Logout()
+  ];
+
 
   @override
   Widget build(BuildContext context) {
-    print("================HomePage widget=================>");
-    print(widget.Name);
-    print(widget.Email);
-    print(widget.PhoneNo);
-    print(widget.UserProfile);
+    print("================HomePage widget=========$_selectedIndex========>");
+    // print(widget.Name);
+    // print(widget.Email);
+    // print(widget.PhoneNo);
+    // print(widget.UserProfile);
     //     Navigate(context) {
     //   if (Navigatio == 0) {
     //   Navigator.push(context, MaterialPageRoute(builder: (context) => PKBook()));
@@ -94,7 +108,11 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 1;
+                        });
+                      },
                       leading: Icon(Icons.person, color: Colors.white),
                       title: Text(
                         'Profile',
@@ -102,7 +120,11 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 0;
+                        });
+                      },
                       leading: Icon(Icons.settings, color: Colors.white),
                       title: Text(
                         'Settings',
@@ -110,7 +132,11 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 2;
+                        });
+                      },
                       leading: Icon(Icons.logout, color: Colors.white),
                       title: Text(
                         'Log Out',
@@ -134,40 +160,34 @@ class _HomePageState extends State<HomePage> {
                     ..setEntry(0, 3, 200 * val)
                     ..rotateY((pi / 6) * val),
                   child: Scaffold(
-                      appBar: AppBar(
-                        title: Center(child: Text('PK Book')),
-                        leading: IconButton(
-                          icon: const Icon(Icons.menu),
-                          tooltip: 'Main Menu',
-                          onPressed: () {
-                            if (value == 0) {
-                              setState(() {
-                                value = 1;
-                              });
-                            } else {
-                              setState(() {
-                                value = 0;
-                              });
-                            }
-                            print(value);
-                            // ScaffoldMessenger.of(context).showSnackBar(
-                            //     const SnackBar(content: Text('This is a snackbar')));
-                          },
-                        ),
+                    appBar: AppBar(
+                      title: Center(child: Text('PK Book')),
+                      leading: IconButton(
+                        icon: const Icon(Icons.menu),
+                        tooltip: 'Main Menu',
+                        onPressed: () {
+                          if (value == 0) {
+                            setState(() {
+                              value = 1;
+                            });
+                          } else {
+                            setState(() {
+                              value = 0;
+                            });
+                          }
+                          print(value);
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //     const SnackBar(content: Text('This is a snackbar')));
+                        },
                       ),
-                      body: PKBook(
-                          Name: widget.Name,
-                          Email: widget.Email,
-                          PhoneNo: widget.PhoneNo,
-                          UserProfile: widget.UserProfile)
-                      // Center(
-                      //   child: Text(
-                      //     "Pakistan Zindabad",
-                      //     style: TextStyle(fontSize: 30),
-                      //   ),
-                      // ),
-
-                      ),
+                    ),
+                    // body: _widgetOptions.elementAt(_selectedIndex),
+                    body: PKBook(
+                        Name: widget.Name,
+                        Email: widget.Email,
+                        PhoneNo: widget.PhoneNo,
+                        UserProfile: widget.UserProfile)
+                  ),
                 ));
               }),
           GestureDetector(
