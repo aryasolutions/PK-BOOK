@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pk_book/PostProfile.dart';
 import 'package:pk_book/Profile.dart';
 import 'package:pk_book/getdata.dart';
 import 'dart:math';
@@ -133,7 +134,7 @@ class _PKBookState extends State<PKBook> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProfilePage(
+                  builder: (context) => UserProfilePage(
                       Name: widget.Name,
                       Email: widget.Email,
                       PhoneNo: widget.PhoneNo,
@@ -306,7 +307,7 @@ Widget Post(
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ProfilePage(
+        builder: (context) => PostProfilePage(
             Name: Name, Email: Email, PhoneNo: PPhoneNo, UserProfile: Profile),
       ),
     );

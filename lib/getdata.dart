@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:loading_animations/loading_animations.dart';
 import 'package:pk_book/PKBook.dart';
 
 class GetPostData extends StatefulWidget {
@@ -32,7 +33,9 @@ class _GetPostDataState extends State<GetPostData> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return Center(
+              child: LoadingFadingLine.circle(),
+            );
           }
           var vwidth = MediaQuery.of(context).size.width;
           var vhight = MediaQuery.of(context).size.height;

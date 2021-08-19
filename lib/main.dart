@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animations/loading_animations.dart';
 import 'package:pk_book/Navigation.dart';
 import 'dart:math';
 
@@ -12,12 +13,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-    final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     // return MaterialApp(debugShowCheckedModeBanner: false, home: HomePage());
-     return FutureBuilder(
+    return FutureBuilder(
       // Initialize FlutterFire:
       future: _initialization,
       builder: (context, snapshot) {
@@ -32,20 +33,22 @@ class MyApp extends StatelessWidget {
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: Container(
-          child: Login(),
-        ));
+              debugShowCheckedModeBanner: false,
+              home: Container(
+                child: Login(),
+              ));
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
         return MaterialApp(
-            home: Container(
-          child: Text("3nd"),
-        ));
+            home: Scaffold(
+                body: Container(
+          child: LoadingFadingLine.circle(
+            duration: Duration(milliseconds: 500),
+          ),
+        )));
       },
     );
-  
   }
 }
 

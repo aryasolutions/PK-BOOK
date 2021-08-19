@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   String Name = '';
   static const List<Widget> _widgetOptions = <Widget>[
     Setting(),
-    ProfilePage(
+    UserProfilePage(
         Name: "Name",
         Email: "Email",
         PhoneNo: 'PhoneNo',
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       onTap: () {
-                        ProfilePage(
+                        UserProfilePage(
                             Name: widget.Name,
                             Email: widget.Email,
                             PhoneNo: widget.PhoneNo,
@@ -136,7 +136,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       onTap: () {
-                        Setting();
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Setting(),
+                          ),
+                        );
                         // setState(() {
                         //   _selectedIndex = 0;
                         // });
@@ -149,7 +154,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ListTile(
                       onTap: () {
-                        Logout();
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Logout(),
+                          ),
+                        );
                         // setState(() {
                         //   _selectedIndex = 2;
                         // });
@@ -174,8 +184,8 @@ class _HomePageState extends State<HomePage> {
                   alignment: Alignment.center,
                   transform: Matrix4.identity()
                     ..setEntry(3, 2, 0.001)
-                    ..setEntry(0, 3, 200 * val)
-                    ..rotateY((pi / 6) * val),
+                    ..setEntry(0, 3, 200 * val),
+                    // ..rotateY((pi / 6) * val),
                   child: Scaffold(
                       appBar: AppBar(
                         title: Center(child: Text('LinkedUp')),

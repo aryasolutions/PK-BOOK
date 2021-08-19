@@ -88,6 +88,9 @@ class _inputState extends State<input> {
         //   'PhoneNo': PhoneNo
         // });
         Navigator.of(context).pop(); // dismiss dialog
+        
+          ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Your post is Uploaded')));
       } catch (e) {
         print("Error ==============>$e");
         Widget okButton = TextButton(
