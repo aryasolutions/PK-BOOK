@@ -88,9 +88,9 @@ class _inputState extends State<input> {
         //   'PhoneNo': PhoneNo
         // });
         Navigator.of(context).pop(); // dismiss dialog
-        
-          ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Your post is Uploaded')));
+
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Your post is Uploaded')));
       } catch (e) {
         print("Error ==============>$e");
         Widget okButton = TextButton(
@@ -116,92 +116,106 @@ class _inputState extends State<input> {
       // print([username, useremail, userpassword]);
     }
 
-    return Row(
-      children: [
-        Container(
-          width: vwidth / 1.35,
-          // width: vwidth / 1.29,
-          // height: 12,
-          child: TextButton(
-              onPressed: () {
-                data();
-
-                Widget okButton = ElevatedButton(
-                  child: Text("Post"),
-                  onPressed: UploadPost,
-                  style: ElevatedButton.styleFrom(
-                      // primary: Colors.purple,
-                      padding: EdgeInsets.symmetric(
-                          horizontal: vwidth / 3, vertical: 10),
-                      textStyle: TextStyle(fontWeight: FontWeight.bold)),
-                );
-                AlertDialog alert = AlertDialog(
-                  title: Center(child: Text("Create post")),
-                  content: SizedBox(
-                    height: 230,
-                    child: Column(
-                      children: [
-                        Container(
-                          width: vwidth - 50,
-                          height: 200,
-                          child: TextFormField(
-                            minLines: 1,
-                            maxLines: 6,
-                            controller: SMScontroller,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: "What's on your mind? "),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[okButton],
-                        )
-                      ],
-                    ),
-                  ),
-                  // actions: [
-                  //   okButton,
-                  // ],
-                );
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return alert;
-                  },
-                );
-              },
-              child: Text(
-                "What's on your mind? ",
-                style: TextStyle(
-                  color: Colors.black38,
-                ),
-              )),
-        ),
-        Container(
-          width: 0.5,
-          height: 40,
-          color: Colors.black38,
-        ),
-        Column(
+    double maxWidth = 600;
+    // double posbarwidth = 0;
+    // if ((vwidth / 1.35) == 550) {
+    //   posbarwidth = vwidth / 1.35;
+    //   print(posbarwidth);
+    // }
+    return Center(
+      child: Container(
+        constraints: BoxConstraints(minWidth: 300, maxWidth: maxWidth),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            IconButton(
-              icon: Icon(
-                Icons.image,
-                color: Colors.black38,
-              ),
-              tooltip: 'Photo',
-              onPressed: () {},
+            Container(
+              // constraints: BoxConstraints(minWidth: 300,maxWidth: maxWidth),
+              width: ((vwidth / 1.35) < 450) ? vwidth / 1.35 : 450,
+              // width: vwidth / 1.29,
+              // height: 12,
+              child: TextButton(
+                  onPressed: () {
+                    data();
+                    Widget okButton = ElevatedButton(
+                      child: Text("Post"),
+                      onPressed: UploadPost,
+                      style: ElevatedButton.styleFrom(
+                          // primary: Colors.purple,
+                          // padding: EdgeInsets.symmetric(
+                          //     horizontal: vwidth / 3, vertical: 10),
+                          textStyle: TextStyle(fontWeight: FontWeight.bold)),
+                    );
+                    AlertDialog alert = AlertDialog(
+                      title: Center(child: Text("Create post")),
+                      content: SizedBox(
+                        height: 230,
+                        child: Column(
+                          children: [
+                            Container(
+                              constraints: BoxConstraints(maxWidth: maxWidth-100,maxHeight: 200),
+                              // width: vwidth - 50,
+                              // height: 200,
+                              child: TextFormField(
+                                minLines: 1,
+                                maxLines: 6,
+                                controller: SMScontroller,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: "What's on your mind? "),
+                              ),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              // children: <Widget>[okButton],
+                            )
+                          ],
+                        ),
+                      ),
+                      actions: [
+                        okButton,
+                      ],
+                    );
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return alert;
+                      },
+                    );
+                  },
+                  child: Text(
+                    "What's on your mind? ",
+                    style: TextStyle(
+                      color: Colors.black38,
+                    ),
+                  )),
             ),
-            Text(
-              "Photo",
-              style: TextStyle(fontSize: 10),
+            Container(
+              width: 0.5,
+              height: 40,
+              color: Colors.black38,
+            ),
+            Column(
+              children: [
+                IconButton(
+                  icon: Icon(
+                    Icons.image,
+                    color: Colors.black38,
+                  ),
+                  tooltip: 'Photo',
+                  onPressed: () {},
+                ),
+                Text(
+                  "Photo",
+                  style: TextStyle(fontSize: 10),
+                )
+              ],
             )
           ],
-        )
-      ],
+        ),
+      ),
     );
   }
 }

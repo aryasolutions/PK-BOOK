@@ -97,433 +97,460 @@ class _UserProfilePageState extends State<UserProfilePage> {
       //   },
       // );
     }
-
+    double maxWidth = 600;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(
-                        Name: widget.Name,
-                        Email: widget.Email,
-                        PhoneNo: widget.PhoneNo,
-                        UserProfile: widget.UserProfile),
-                  ),
-                );
-              },
-              icon: Icon(
-                Icons.arrow_back,
-              )),
-          // title: Text('Logged In with ${data['provider']}'),
-          title: Text('Profile'),
-          // actions: [
-          //   IconButton(
-          //       onPressed: Log_Out,
-          //       icon: Icon(
-          //         Icons.logout,
-          //         size: 35,
-          //         color: Colors.red,
-          //       ))
-          // ],
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Container(
-                    // height: 100,
-                    // width: 100,
-                    width: MediaQuery.of(context).size.width / 4,
-                    height: MediaQuery.of(context).size.width / 4,
-                    //  child: Image.network('https://picsum.photos/250?image=9'),
-                    // color: Colors.black38,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage("${widget.UserProfile}"),
-                          fit: BoxFit.cover),
-                      shape: BoxShape.circle,
+      home: Center(
+        child: Container(
+          constraints: BoxConstraints(maxWidth: maxWidth - 100),
+          child: Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(
+                            Name: widget.Name,
+                            Email: widget.Email,
+                            PhoneNo: widget.PhoneNo,
+                            UserProfile: widget.UserProfile),
+                      ),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                  )),
+              // title: Text('Logged In with ${data['provider']}'),
+              title: Text('Profile'),
+              // actions: [
+              //   IconButton(
+              //       onPressed: Log_Out,
+              //       icon: Icon(
+              //         Icons.logout,
+              //         size: 35,
+              //         color: Colors.red,
+              //       ))
+              // ],
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        // width: MediaQuery.of(context).size.width / 12,
+                        // height: MediaQuery.of(context).size.width / 12,
+                        //  child: Image.network('https://picsum.photos/250?image=9'),
+                        // color: Colors.black38,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage("${widget.UserProfile}"),
+                              fit: BoxFit.cover),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                FittedBox(
-                  child: Center(
-                    child: Row(
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            // // // // // // // // // // // // // // // // // // // Name // // // // // // // // // // // // // // // // // //
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.person,
-                                  color: Colors.blue,
-                                  size: 40,
-                                ),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Name",
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.black38,
-                                          ),
-                                        ),
-                                        Text(
-                                          widget.Name,
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ],
+                    FittedBox(
+                      child: Center(
+                        child: Row(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                // // // // // // // // // // // // // // // // // // // Name // // // // // // // // // // // // // // // // // //
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.person,
+                                      color: Colors.blue,
+                                      size: 40,
                                     ),
-                                  ),
+                                    Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: maxWidth),
+                                      // width: MediaQuery.of(context).size.width /1.4,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Name",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black38,
+                                              ),
+                                            ),
+                                            Text(
+                                              widget.Name,
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: IconButton(
+                                        alignment: Alignment.bottomRight,
+                                        onPressed: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title:
+                                                      Text("Enter Your Name"),
+                                                  content: TextField(
+                                                    decoration: InputDecoration(
+                                                        // border: OutlineInputBorder(),
+                                                        hintText: Name),
+                                                    onChanged: (value) {
+                                                      Name = value;
+                                                    },
+                                                  ),
+                                                  actions: [
+                                                    ElevatedButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                          setState(() {});
+                                                        },
+                                                        child: Center(
+                                                            child:
+                                                                Text("Update")))
+                                                  ],
+                                                );
+                                              });
+                                        },
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: Colors.black38,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: IconButton(
-                                    alignment: Alignment.bottomRight,
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: Text("Enter Your Name"),
-                                              content: TextField(
-                                                decoration: InputDecoration(
-                                                    // border: OutlineInputBorder(),
-                                                    hintText: Name),
-                                                onChanged: (value) {
-                                                  Name = value;
-                                                },
-                                              ),
-                                              actions: [
-                                                ElevatedButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      setState(() {});
-                                                    },
-                                                    child: Center(
-                                                        child: Text("Update")))
-                                              ],
-                                            );
-                                          });
-                                    },
-                                    icon: Icon(
-                                      Icons.edit,
-                                      color: Colors.black38,
-                                    ),
-                                  ),
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  child: Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: maxWidth),
+                                      // width: MediaQuery.of(context).size.width -20,
+                                      height: 1,
+                                      color: Colors.black12),
                                 ),
-                              ],
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 20, bottom: 20),
-                              child: Container(
-                                  width: MediaQuery.of(context).size.width - 20,
-                                  height: 1,
-                                  color: Colors.black12),
-                            ),
-                            // // // // // // // // // // // // // // // // // // // Email // // // // // // // // // // // // // // // // // //
+                                // // // // // // // // // // // // // // // // // // // Email // // // // // // // // // // // // // // // // // //
 
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.email,
-                                  color: Colors.blue,
-                                  size: 40,
-                                ),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Email",
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.black38,
-                                          ),
-                                        ),
-                                        Text(
-                                          widget.Email,
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ],
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.email,
+                                      color: Colors.blue,
+                                      size: 40,
                                     ),
-                                  ),
+                                    Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: maxWidth),
+                                      // width: MediaQuery.of(context).size.width /  1.4,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Email",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black38,
+                                              ),
+                                            ),
+                                            Text(
+                                              widget.Email,
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: IconButton(
+                                        onPressed: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title:
+                                                      Text("Enter Your Email"),
+                                                  content: TextField(
+                                                    decoration: InputDecoration(
+                                                        // border: OutlineInputBorder(),
+                                                        hintText:
+                                                            "XXXXXXXXX@gmail.com"),
+                                                    onChanged: (value) {
+                                                      Email = value;
+                                                    },
+                                                  ),
+                                                  actions: [
+                                                    ElevatedButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                          setState(() {});
+                                                        },
+                                                        child: Center(
+                                                            child:
+                                                                Text("Update")))
+                                                  ],
+                                                );
+                                              });
+                                        },
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: Colors.black38,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: Text("Enter Your Email"),
-                                              content: TextField(
-                                                decoration: InputDecoration(
-                                                    // border: OutlineInputBorder(),
-                                                    hintText:
-                                                        "XXXXXXXXX@gmail.com"),
-                                                onChanged: (value) {
-                                                  Email = value;
-                                                },
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  child: Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: maxWidth),
+                                      // width: MediaQuery.of(context).size.width -  20,
+                                      height: 1,
+                                      color: Colors.black12),
+                                ),
+                                // // // // // // // // // // // // // // // // // // // Phone Number // // // // // // // // // // // // // // // // // //
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.phone,
+                                      color: Colors.blue,
+                                      size: 40,
+                                    ),
+                                    Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: maxWidth),
+                                      // width: MediaQuery.of(context).size.width /   1.4,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Phone Number",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black38,
                                               ),
-                                              actions: [
-                                                ElevatedButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      setState(() {});
+                                            ),
+                                            Text(
+                                              widget.PhoneNo,
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: IconButton(
+                                        onPressed: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title:
+                                                      Text("Enter Your Number"),
+                                                  content: TextField(
+                                                    decoration: InputDecoration(
+                                                        // border: OutlineInputBorder(),
+                                                        hintText:
+                                                            "03XX-XXXXXXX"),
+                                                    onChanged: (value) {
+                                                      PhoneNo = value;
                                                     },
-                                                    child: Center(
-                                                        child: Text("Update")))
-                                              ],
-                                            );
-                                          });
-                                    },
-                                    icon: Icon(
-                                      Icons.edit,
-                                      color: Colors.black38,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 20, bottom: 20),
-                              child: Container(
-                                  width: MediaQuery.of(context).size.width - 20,
-                                  height: 1,
-                                  color: Colors.black12),
-                            ),
-                            // // // // // // // // // // // // // // // // // // // Phone Number // // // // // // // // // // // // // // // // // //
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.phone,
-                                  color: Colors.blue,
-                                  size: 40,
-                                ),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Phone Number",
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.black38,
-                                          ),
+                                                  ),
+                                                  actions: [
+                                                    ElevatedButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                          setState(() {});
+                                                        },
+                                                        child: Center(
+                                                            child:
+                                                                Text("Update")))
+                                                  ],
+                                                );
+                                              });
+                                        },
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: Colors.black38,
                                         ),
-                                        Text(
-                                          widget.PhoneNo,
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: Text("Enter Your Number"),
-                                              content: TextField(
-                                                decoration: InputDecoration(
-                                                    // border: OutlineInputBorder(),
-                                                    hintText: "03XX-XXXXXXX"),
-                                                onChanged: (value) {
-                                                  PhoneNo = value;
-                                                },
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  child: Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: maxWidth),
+                                      // width: MediaQuery.of(context).size.width -20,
+                                      height: 1,
+                                      color: Colors.black12),
+                                ),
+                                // // // // // // // // // // // // // // // // // // // About // // // // // // // // // // // // // // // // // //
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.info,
+                                      color: Colors.blue,
+                                      size: 40,
+                                    ),
+                                    Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: maxWidth),
+                                      // width: MediaQuery.of(context).size.width /1.4,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "About",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black38,
                                               ),
-                                              actions: [
-                                                ElevatedButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      setState(() {});
+                                            ),
+                                            Text(
+                                              About,
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: IconButton(
+                                        onPressed: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title:
+                                                      Text("Enter Your Number"),
+                                                  content: TextField(
+                                                    decoration: InputDecoration(
+                                                        // border: OutlineInputBorder(),
+                                                        hintText: About),
+                                                    onChanged: (value) {
+                                                      About = value;
                                                     },
-                                                    child: Center(
-                                                        child: Text("Update")))
-                                              ],
-                                            );
-                                          });
-                                    },
-                                    icon: Icon(
-                                      Icons.edit,
-                                      color: Colors.black38,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 20, bottom: 20),
-                              child: Container(
-                                  width: MediaQuery.of(context).size.width - 20,
-                                  height: 1,
-                                  color: Colors.black12),
-                            ),
-                            // // // // // // // // // // // // // // // // // // // About // // // // // // // // // // // // // // // // // //
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.info,
-                                  color: Colors.blue,
-                                  size: 40,
-                                ),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "About",
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.black38,
-                                          ),
+                                                  ),
+                                                  actions: [
+                                                    ElevatedButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                          setState(() {});
+                                                        },
+                                                        child: Center(
+                                                            child:
+                                                                Text("Update")))
+                                                  ],
+                                                );
+                                              });
+                                        },
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: Colors.black38,
                                         ),
-                                        Text(
-                                          About,
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: Text("Enter Your Number"),
-                                              content: TextField(
-                                                decoration: InputDecoration(
-                                                    // border: OutlineInputBorder(),
-                                                    hintText: About),
-                                                onChanged: (value) {
-                                                  About = value;
-                                                },
-                                              ),
-                                              actions: [
-                                                ElevatedButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      setState(() {});
-                                                    },
-                                                    child: Center(
-                                                        child: Text("Update")))
-                                              ],
-                                            );
-                                          });
-                                    },
-                                    icon: Icon(
-                                      Icons.edit,
-                                      color: Colors.black38,
-                                    ),
-                                  ),
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  child: Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: maxWidth),
+                                      // width: MediaQuery.of(context).size.width -20,
+                                      height: 1,
+                                      color: Colors.black12),
                                 ),
+                                // // // // // // // // // // // // // // // // // // //  // // // // // // // // // // // // // // // // // //
                               ],
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 20, bottom: 20),
-                              child: Container(
-                                  width: MediaQuery.of(context).size.width - 20,
-                                  height: 1,
-                                  color: Colors.black12),
-                            ),
-                            // // // // // // // // // // // // // // // // // // //  // // // // // // // // // // // // // // // // // //
                           ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                //  Text('Logged In with ${data['provider']}',
-                //  style: TextStyle(),),
-                Padding(
-                  padding: const EdgeInsets.only(top: 18.0),
-                  child: Align(
-                    alignment: FractionalOffset.bottomCenter,
-                    child: Text(
-                      'Logged In with Email',
-                      style: TextStyle(
-                          color: Colors.redAccent,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
+                    //  Text('Logged In with ${data['provider']}',
+                    //  style: TextStyle(),),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 18.0),
+                      child: Align(
+                        alignment: FractionalOffset.bottomCenter,
+                        child: Text(
+                          'Logged In with Email',
+                          style: TextStyle(
+                              color: Colors.redAccent,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),

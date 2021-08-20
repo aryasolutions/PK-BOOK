@@ -43,9 +43,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             home: Scaffold(
                 body: Container(
-          child: LoadingFadingLine.circle(
-            duration: Duration(milliseconds: 500),
-          ),
+          child: LoadingFadingLine.circle(),
         )));
       },
     );

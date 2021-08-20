@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pk_book/Navigation.dart';
 import 'package:pk_book/login.dart';
+import 'package:flutter_password_strength/flutter_password_strength.dart';
+
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -23,7 +25,6 @@ class _RegistrationState extends State<Registration> {
         TextEditingController();
     String UserProfile = "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=";
 
-    void register() async {
       FirebaseAuth auth = FirebaseAuth.instance;
       FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -33,6 +34,7 @@ class _RegistrationState extends State<Registration> {
       final String userOTP = otpcontroller.text;
       final String PhoneNo = phonenocontroller.text;
       final String userpassword = userpasswordcontroller.text;
+    void register() async {
       try {
         var res = EmailAuth.validate(
             receiverMail: useremailcontroller.text,
@@ -201,6 +203,12 @@ class _RegistrationState extends State<Registration> {
                                     border: OutlineInputBorder(),
                                     hintText: "Password"),
                               ),
+                                  FlutterPasswordStrength(
+      password: userpassword, 
+      strengthCallback: (strength){
+        debugPrint(strength.toString());
+      }
+    ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [

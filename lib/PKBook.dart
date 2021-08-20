@@ -126,94 +126,99 @@ class _PKBookState extends State<PKBook> {
 //       Post(Profile[0], Name[0], Time[0], Sms[0], vwidth, vhight);
 //     }
 // }
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => UserProfilePage(
-                      Name: widget.Name,
-                      Email: widget.Email,
-                      PhoneNo: widget.PhoneNo,
-                      UserProfile: widget.UserProfile),
-                ),
-              );
-            },
-            child: Container(
-              width: 60,
-              height: 60,
-              child: Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: CircleAvatar(
-                  radius: 50.0,
-                  backgroundImage: NetworkImage(
-                    widget.UserProfile,
+    return Center(
+      child: Container(
+        width: 600,
+        child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              leading: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UserProfilePage(
+                          Name: widget.Name,
+                          Email: widget.Email,
+                          PhoneNo: widget.PhoneNo,
+                          UserProfile: widget.UserProfile),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  child: Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: CircleAvatar(
+                      radius: 50.0,
+                      backgroundImage: NetworkImage(
+                        widget.UserProfile,
+                      ),
+                    ),
                   ),
                 ),
               ),
+
+              title: Center(
+                child: input(
+                    Name: widget.Name,
+                    Email: widget.Email,
+                    PhoneNo: widget.PhoneNo,
+                    UserProfile: widget.UserProfile),
+              ),
+              // title: Center(child: Text('PK Book')),
+              // leading:  IconButton(
+              //     icon: const Icon(Icons.menu),
+              //     tooltip: 'Main Menu',
+              //     onPressed: () {
+
+              //       // ScaffoldMessenger.of(context).showSnackBar(
+              //       //     const SnackBar(content: Text('This is a snackbar')));
+              //     },
+              //   ),
             ),
-          ),
+            body: GetPostData(
+              username: widget.Name,
+            )
+            //  SingleChildScrollView(
+            //   child: Center(
+            //       child: Column(
+            //     children: [
+            //       TopBar(),
+            //       input(
+            //           Name: widget.Name,
+            //           Email: widget.Email,
+            //           PhoneNo: widget.PhoneNo,
+            //           UserProfile: widget.UserProfile),
+            //           GetPostData(),
+            //       // SingleChildScrollView(
+            //       //     child: Column(
+            //       //   children: [
+            //       //     // body: ListView.builder(
+            //       //     // itemCount: posts.length,
+            //       //     // itemBuilder: (context, index) {
+            //       //     //   return Post(posts[index][0], posts[index][1], posts[index][2],
+            //       //     //       posts[index][3], vwidth, vhight);
+            //       //     // }),
+            //       //     // Post(Profile[0], Name[0], Time[0], Sms[0], vwidth, vhight),
+            //       //     // Post(Profile[0], Name[1], Time[1], Sms[1], vwidth, vhight),
+            //       //     // Post(Profile[0], Name[3], Time[3], Sms[3], vwidth, vhight),
+            //       //     Post(posts[0][0], posts[0][1], posts[0][2], posts[0][3], vwidth,
+            //       //         vhight),
+            //       //     Post(posts[1][0], posts[1][1], posts[1][2], posts[1][3], vwidth,
+            //       //         vhight),
+            //       //     Post(posts[2][0], posts[2][1], posts[2][2], posts[2][3], vwidth,
+            //       //         vhight),
+            //       //   ],
+            //       // )),
+            //     ],
+            //   )),
+            // ),
 
-          title: Center(
-            child: input(
-                Name: widget.Name,
-                Email: widget.Email,
-                PhoneNo: widget.PhoneNo,
-                UserProfile: widget.UserProfile),
-          ),
-          // title: Center(child: Text('PK Book')),
-          // leading:  IconButton(
-          //     icon: const Icon(Icons.menu),
-          //     tooltip: 'Main Menu',
-          //     onPressed: () {
-
-          //       // ScaffoldMessenger.of(context).showSnackBar(
-          //       //     const SnackBar(content: Text('This is a snackbar')));
-          //     },
-          //   ),
-        ),
-        body: GetPostData(
-          username: widget.Name,
-        )
-        //  SingleChildScrollView(
-        //   child: Center(
-        //       child: Column(
-        //     children: [
-        //       TopBar(),
-        //       input(
-        //           Name: widget.Name,
-        //           Email: widget.Email,
-        //           PhoneNo: widget.PhoneNo,
-        //           UserProfile: widget.UserProfile),
-        //           GetPostData(),
-        //       // SingleChildScrollView(
-        //       //     child: Column(
-        //       //   children: [
-        //       //     // body: ListView.builder(
-        //       //     // itemCount: posts.length,
-        //       //     // itemBuilder: (context, index) {
-        //       //     //   return Post(posts[index][0], posts[index][1], posts[index][2],
-        //       //     //       posts[index][3], vwidth, vhight);
-        //       //     // }),
-        //       //     // Post(Profile[0], Name[0], Time[0], Sms[0], vwidth, vhight),
-        //       //     // Post(Profile[0], Name[1], Time[1], Sms[1], vwidth, vhight),
-        //       //     // Post(Profile[0], Name[3], Time[3], Sms[3], vwidth, vhight),
-        //       //     Post(posts[0][0], posts[0][1], posts[0][2], posts[0][3], vwidth,
-        //       //         vhight),
-        //       //     Post(posts[1][0], posts[1][1], posts[1][2], posts[1][3], vwidth,
-        //       //         vhight),
-        //       //     Post(posts[2][0], posts[2][1], posts[2][2], posts[2][3], vwidth,
-        //       //         vhight),
-        //       //   ],
-        //       // )),
-        //     ],
-        //   )),
-        // ),
-
-        );
+            ),
+      ),
+    );
   }
 }
 
@@ -313,7 +318,9 @@ Widget Post(
     );
   }
 
+  double maxWidth = 600;
   return Container(
+    constraints: BoxConstraints(maxWidth: maxWidth),
     // width: vwidth - 20,
     // height: vwidth,
     // decoration: new BoxDecoration(
@@ -323,13 +330,17 @@ Widget Post(
     child: Column(
       children: [
         Container(
-          width: vwidth,
+          constraints: BoxConstraints(maxWidth: maxWidth),
+          // width: vwidth,
           height: 5,
           color: Colors.black12,
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            GestureDetector(
+            Row(children: [
+               GestureDetector(
               onTap: gotoprofile,
               child: Container(
                 width: 60,
@@ -344,7 +355,8 @@ Widget Post(
               ),
             ),
             Container(
-              width: vwidth / 1.3,
+              constraints: BoxConstraints(maxWidth: maxWidth - 300),
+              // width: vwidth / 1.3,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -363,7 +375,9 @@ Widget Post(
                 ],
               ),
             ),
-            IconButton(
+         
+            ],),
+              IconButton(
               onPressed: () {},
               icon: Icon(Icons.more_vert),
             )
@@ -372,7 +386,8 @@ Widget Post(
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            width: vwidth - 30,
+            constraints: BoxConstraints(maxWidth: maxWidth),
+            // width: vwidth - 30,
             decoration: new BoxDecoration(
               borderRadius: new BorderRadius.circular(16.0),
               // color: Colors.blue[200],

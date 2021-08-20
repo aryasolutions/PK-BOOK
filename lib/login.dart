@@ -35,10 +35,10 @@ class _LoginState extends State<Login> {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     // print("objectobjectobjectobjectobjectobjectobjectobjectobject");
-    // final String useremail = useremailcontroller.text;
-    // final String userpassword = userpasswordcontroller.text;
-        final String useremail = 'lovelymian0900@gmail.com';
-    final String userpassword = 'qwerty';
+    final String useremail = useremailcontroller.text;
+    final String userpassword = userpasswordcontroller.text;
+    //     final String useremail = 'mudassirmukhtar4@gmail.com';
+    // final String userpassword = 'qwerty';
     try {
       final UserCredential user = await auth.signInWithEmailAndPassword(
           email: useremail, password: userpassword);
@@ -146,7 +146,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'LinkedUp',
+      title: 'Linked-Up',
       home: Scaffold(
         // appBar: AppBar(
         //   centerTitle: true,
@@ -168,6 +168,8 @@ class _LoginState extends State<Login> {
                           bottomRight: const Radius.circular(40.0),
                           bottomLeft: const Radius.circular(40.0),
                         )),
+                        // constraints: BoxConstraints(minWidth: 100, maxWidth: 600),
+                        constraints: BoxConstraints( maxWidth: 600),
                     // width: 360,
                     // height: 400,
                     child: Center(
@@ -179,9 +181,25 @@ class _LoginState extends State<Login> {
                           child: Column(
                             children: [
                               SizedBox(height: 30),
+// ++++++++++++++++++++++++++++++++++++++++Welcome to LinkedUp++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
                               Text(
-                                'Welcome to LinkedUp',
+                                'Welcome to Linked-Up',
                                 style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(height: 10),
+// +++++++++++++++++++++++++++++++++++++++Logo Image+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                              Container(
+                                height: 150,
+                                width: 270,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage('images/Logo.png'),
+                                    fit: BoxFit.fill,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                  shape: BoxShape.rectangle,
+                                ),
                               ),
                               SizedBox(height: 30),
                               TextField(
