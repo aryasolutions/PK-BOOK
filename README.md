@@ -4,6 +4,7 @@
 flutter run --no-sound-null-safety
 flutter build web --no-sound-null-safety
 flutter run -d chrome --release --no-sound-null-safety
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

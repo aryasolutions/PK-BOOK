@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animations/loading_animations.dart';
 
-class Setting extends StatefulWidget {
-  const Setting({Key? key}) : super(key: key);
+class Main extends StatefulWidget {
+  const Main({ Key? key }) : super(key: key);
 
   @override
-  _SettingState createState() => _SettingState();
+  _MainState createState() => _MainState();
 }
 
-class _SettingState extends State<Setting> {
+class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(),
       body: Container(
           child: Center(

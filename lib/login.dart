@@ -103,7 +103,7 @@ class _LoginState extends State<Login> {
       );
       AlertDialog alert = AlertDialog(
         title: Center(child: Text("Error")),
-        content: Text("$e"),
+        content: Text("${e.toString()}"),
         actions: [
           okButton,
         ],
@@ -155,10 +155,11 @@ class _LoginState extends State<Login> {
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.only(top: 68.0, left: 20, right: 20),
+              padding: const EdgeInsets.only(top: 20.0, left: 10, right: 10),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 20),
+                  // SizedBox(height: 20),
                   Container(
                     decoration: new BoxDecoration(
                         color: Colors.black12,

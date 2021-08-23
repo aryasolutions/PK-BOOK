@@ -46,33 +46,17 @@ class _GetPostDataState extends State<GetPostData> {
               return Container(
                 child: Column(
                   children: [
-                    // Text(data['username']),
-                    // Text(data['email']),
-                    // Text(data['SMS']),
-                    // Text(data['PhoneNo']),
-                    // Text(data['Date']),
                     Post(
-                        data['UserProfile'],
-                        widget.username,
-                        data['username'],
-                        data['email'],
-                        data['Date'],
-                        data['SMS'],
-                        data['PhoneNo'],
-                        vwidth,
-                        vhight,
-                        context)
-// String Profile, String Name, String Time, String Sms, var vwidth,
+                      Name: data['username'],
+                      Date: data['Date'],
+                      PhoneNo: data['PhoneNo'],
+                      Profile: data['UserProfile'],
+                      Email: data['email'],
+                      Sms: data['SMS'],
+                    )
                   ],
                 ),
               );
-              // return ListTile(
-              //   title: Text(data['username']),
-              //   subtitle: Text(data['email']),
-              //   // trailing: Text(data['SMS']),
-              //   leading: FlutterLogo(size: 56.0),
-              //   trailing: Icon(Icons.more_vert),
-              // );
             }).toList(),
           );
         },

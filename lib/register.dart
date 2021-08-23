@@ -6,7 +6,6 @@ import 'package:pk_book/Navigation.dart';
 import 'package:pk_book/login.dart';
 import 'package:flutter_password_strength/flutter_password_strength.dart';
 
-
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
 
@@ -23,17 +22,18 @@ class _RegistrationState extends State<Registration> {
     final TextEditingController otpcontroller = TextEditingController();
     final TextEditingController userpasswordcontroller =
         TextEditingController();
-    String UserProfile = "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=";
+    String UserProfile =
+        "https://media.istockphoto.com/vectors/profile-placeholder-image-gray-silhouette-no-photo-vector-id1016744034?b=1&k=6&m=1016744034&s=612x612&w=0&h=dbicqM9p31ex5Lm-FpsdOjHkPZM_6Lmkb02qJO9SY5E=";
 
-      FirebaseAuth auth = FirebaseAuth.instance;
-      FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseAuth auth = FirebaseAuth.instance;
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-      // print("objectobjectobjectobjectobjectobjectobjectobjectobject");
-      final String username = usernamecontroller.text;
-      final String useremail = useremailcontroller.text;
-      final String userOTP = otpcontroller.text;
-      final String PhoneNo = phonenocontroller.text;
-      final String userpassword = userpasswordcontroller.text;
+    // print("objectobjectobjectobjectobjectobjectobjectobjectobject");
+    final String username = usernamecontroller.text;
+    final String useremail = useremailcontroller.text;
+    final String userOTP = otpcontroller.text;
+    final String PhoneNo = phonenocontroller.text;
+    final String userpassword = userpasswordcontroller.text;
     void register() async {
       try {
         var res = EmailAuth.validate(
@@ -48,21 +48,20 @@ class _RegistrationState extends State<Registration> {
             "email": useremail,
             "PhoneNo": PhoneNo,
             "password": userpassword,
-            "UserProfile":UserProfile,
-            "UID":user.user.uid
+            "UserProfile": UserProfile,
+            "UID": user.user.uid
           });
 
-        Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(
-            Name: username,
-            Email: useremail,
-            PhoneNo: PhoneNo,
-            UserProfile:UserProfile
-          ),
-        ),
-      );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(
+                  Name: username,
+                  Email: useremail,
+                  PhoneNo: PhoneNo,
+                  UserProfile: UserProfile),
+            ),
+          );
         } else {
           print("Invalid OTP");
         }
@@ -136,6 +135,7 @@ class _RegistrationState extends State<Registration> {
                           bottomRight: const Radius.circular(40.0),
                           bottomLeft: const Radius.circular(40.0),
                         )),
+                    constraints: BoxConstraints(maxWidth: 600),
                     // width: 360,
                     // height: 400,
                     child: Center(
@@ -161,20 +161,20 @@ class _RegistrationState extends State<Registration> {
                               ),
                               SizedBox(height: 15),
                               TextField(
-                                  controller: useremailcontroller,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      hintText: "Email",
-                                      labelText: "Email",
-                                      suffixIcon: Padding(
-                                        padding: const EdgeInsets.only(right: 12),
-                                        child: TextButton(
-                                          child: Text("Sent OTP"),
-                                          onPressed: () => sentOTP(),
-                                        ),
-                                      )),
-                                ),
-                            
+                                controller: useremailcontroller,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: "Email",
+                                    labelText: "Email",
+                                    suffixIcon: Padding(
+                                      padding: const EdgeInsets.only(right: 12),
+                                      child: TextButton(
+                                        child: Text("Sent OTP"),
+                                        onPressed: () => sentOTP(),
+                                      ),
+                                    )),
+                              ),
+
                               SizedBox(height: 15),
                               TextField(
                                 controller: otpcontroller,
@@ -203,24 +203,23 @@ class _RegistrationState extends State<Registration> {
                                     border: OutlineInputBorder(),
                                     hintText: "Password"),
                               ),
-                                  FlutterPasswordStrength(
-      password: userpassword, 
-      strengthCallback: (strength){
-        debugPrint(strength.toString());
-      }
-    ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  TextButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        'Forget Password',
-                                        style: TextStyle(fontSize: 10.0),
-                                      )),
-                                ],
-                              ),
-                              // SizedBox(height: 10),
+                              FlutterPasswordStrength(
+                                  password: userpassword,
+                                  strengthCallback: (strength) {
+                                    debugPrint(strength.toString());
+                                  }),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.end,
+                              //   children: [
+                              //     TextButton(
+                              //         onPressed: () {},
+                              //         child: Text(
+                              //           'Forget Password',
+                              //           style: TextStyle(fontSize: 10.0),
+                              //         )),
+                              //   ],
+                              // ),
+                              SizedBox(height: 10),
                               FlatButton(
                                 onPressed: register,
                                 child: Text(
@@ -262,8 +261,7 @@ class _RegistrationState extends State<Registration> {
                                             fontSize: 12.0,
                                             fontWeight: FontWeight.bold),
                                       )),
-                                                                  SizedBox(height: 50),
-
+                                  SizedBox(height: 50),
                                 ],
                               ),
                             ],

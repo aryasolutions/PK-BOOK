@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pk_book/Logout.dart';
+import 'package:pk_book/Messenger/Main.dart';
 import 'package:pk_book/Navigation.dart';
 import 'dart:math';
 
@@ -197,6 +198,14 @@ class _HomePageState extends State<HomePage> {
                       child: Scaffold(
                           appBar: AppBar(
                             title: Center(child: Text('LinkedUp')),
+                            actions: [IconButton(onPressed: (){ 
+                              Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Main()
+                              ),
+                            );
+                          }, icon: Icon(Icons.message))],
                             leading: IconButton(
                               icon: const Icon(Icons.menu),
                               tooltip: 'Main Menu',

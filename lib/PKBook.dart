@@ -293,131 +293,529 @@ class _TopBarState extends State<TopBar> {
 
 final _random = Random();
 
-Widget Post(
-    String Profile,
-    String username,
-    String Name,
-    String Email,
-    String Time,
-    String Sms,
-    String PhoneNo,
-    var vwidth,
-    var vhight,
-    var context) {
-  String PPhoneNo = 'Show Only me';
-  // if (username == Name) {
-  //       PPhoneNo = PhoneNo;
-  // }
-  gotoprofile() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PostProfilePage(
-            Name: Name, Email: Email, PhoneNo: PPhoneNo, UserProfile: Profile),
+// Widget Post(
+//     String Profile,
+//     String username,
+//     String Name,
+//     String Email,
+//     String Time,
+//     String Sms,
+//     String PhoneNo,
+//     var vwidth,
+//     var vhight,
+//     var context) {
+//   String PPhoneNo = 'Show Only me';
+//   // if (username == Name) {
+//   //       PPhoneNo = PhoneNo;
+//   // }
+//   gotoprofile() {
+//     Navigator.push(
+//       context,
+//       MaterialPageRoute(
+//         builder: (context) => PostProfilePage(
+//             Name: Name, Email: Email, PhoneNo: PPhoneNo, UserProfile: Profile),
+//       ),
+//     );
+//   }
+
+//   double maxWidth = 600;
+//   bool like = false;
+//   return Container(
+//     constraints: BoxConstraints(maxWidth: maxWidth),
+//     // width: vwidth - 20,
+//     // height: vwidth,
+//     // decoration: new BoxDecoration(
+//     //   borderRadius: new BorderRadius.circular(16.0),
+//     //   color: Colors.blue[200],
+//     // ),
+//     child: Column(
+//       children: [
+//         Container(
+//           constraints: BoxConstraints(maxWidth: maxWidth),
+//           // width: vwidth,
+//           height: 5,
+//           color: Colors.black12,
+//         ),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             Row(
+//               children: [
+//                 GestureDetector(
+//                   onTap: gotoprofile,
+//                   child: Container(
+//                     width: 60,
+//                     height: 60,
+//                     child: Padding(
+//                       padding: const EdgeInsets.all(8.0),
+//                       child: CircleAvatar(
+//                         radius: 50.0,
+//                         backgroundImage: NetworkImage(Profile),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 Container(
+//                   constraints: BoxConstraints(maxWidth: maxWidth - 300),
+//                   // width: vwidth / 1.3,
+//                   child: Column(
+//                     mainAxisAlignment: MainAxisAlignment.start,
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+//                       Text(
+//                         Name,
+//                         style: TextStyle(
+//                             fontWeight: FontWeight.bold, fontSize: 16),
+//                       ),
+//                       Text(
+//                         Time,
+//                         style: TextStyle(
+//                             color: Colors.black45,
+//                             fontWeight: FontWeight.bold,
+//                             fontSize: 10),
+//                       )
+//                     ],
+//                   ),
+//                 ),
+//               ],
+//             ),
+//             PopupMenuButton(
+//                 icon: const Icon(
+//                   Icons.more_vert,
+//                   color: Colors.black45,
+//                 ),
+//                 elevation: 20,
+//                 enabled: true,
+//                 onSelected: (value) {
+//                   if (value == 1) {
+//                     print("Edit");
+//                   }
+//                   if (value == 2) {
+//                     print("Delete");
+//                   }
+//                   if (value == 3) {
+//                     print("Report");
+//                   }
+//                 },
+//                 itemBuilder: (context) => [
+//                       PopupMenuItem(
+//                         child: Text("Edit"),
+//                         value: 1,
+//                       ),
+//                       PopupMenuItem(
+//                         child: Text("Delete"),
+//                         value: 2,
+//                       ),
+//                       PopupMenuItem(
+//                         child: Text("Report"),
+//                         value: 3,
+//                       ),
+//                     ]),
+
+//             // IconButton(
+//             //   onPressed: () {},
+//             //   icon: Icon(Icons.more_vert),
+//             // )
+//           ],
+//         ),
+//         Padding(
+//           padding: const EdgeInsets.all(8.0),
+//           child: Container(
+//             constraints: BoxConstraints(maxWidth: maxWidth),
+//             // width: vwidth - 30,
+//             decoration: new BoxDecoration(
+//               borderRadius: new BorderRadius.circular(16.0),
+//               // color: Colors.blue[200],
+//               color: Colors.primaries[_random.nextInt(Colors.primaries.length)],
+//               // [_random.nextInt(9) * 100],
+//               boxShadow: [
+//                 BoxShadow(
+//                   color: Colors.grey.withOpacity(0.5),
+//                   spreadRadius: 5,
+//                   blurRadius: 7,
+//                   offset: Offset(0, 3), // changes position of shadow
+//                 ),
+//               ],
+//             ),
+//             child: Center(
+//                 child: Padding(
+//               padding: const EdgeInsets.only(
+//                   left: 20, right: 20, top: 70, bottom: 70),
+//               child: Text(
+//                 Sms,
+//                 textAlign: TextAlign.center,
+//                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+//               ),
+//             )),
+//           ),
+//         ),
+//         SizedBox(
+//           height: 5,
+//         ),
+//         // Container(
+//         //   height: 0.2,
+//         //   color: Colors.blueGrey,
+//         // ),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceAround,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             (like == true)
+//                 ? IconButton(
+//                     icon: const Icon(Icons.thumb_down),
+//                     color: Colors.black45,
+//                     tooltip: 'disLike',
+//                     onPressed: () {
+//                       // setState(() {});
+//                       like == false;
+//                       // ScaffoldMessenger.of(context).showSnackBar(
+//                       //     const SnackBar(content: Text('dis Liked')));
+//                     },
+//                   )
+//                 : IconButton(
+//                     icon: const Icon(Icons.thumb_up),
+//                     color: Colors.black45,
+//                     tooltip: 'Like',
+//                     onPressed: () {
+//                       like == true;
+//                       // ScaffoldMessenger.of(context).showSnackBar(
+//                       //     const SnackBar(content: Text('Liked')));
+//                     },
+//                   ),
+//             IconButton(
+//               icon: const Icon(Icons.message),
+//               color: Colors.black45,
+//               tooltip: 'Comment',
+//               onPressed: () {
+//                 // ScaffoldMessenger.of(context).showSnackBar(
+//                 //     const SnackBar(content: Text('This is a snackbar')));
+//               },
+//             ),
+//             PopupMenuButton(
+//                 icon: const Icon(
+//                   Icons.share,
+//                   color: Colors.black45,
+//                 ),
+//                 elevation: 20,
+//                 enabled: true,
+//                 onSelected: (value) {
+//                   if (value == 1) {
+//                     print("Download");
+//                   }
+//                   if (value == 2) {
+//                     print("Share on facebook");
+//                   }
+//                   if (value == 3) {
+//                     print("Share on whatsapp");
+//                   }
+//                 },
+//                 itemBuilder: (context) => [
+//                       PopupMenuItem(
+//                         child: Text("Download"),
+//                         value: 1,
+//                       ),
+//                       PopupMenuItem(
+//                         child: Text("Share on facebook"),
+//                         value: 2,
+//                       ),
+//                       PopupMenuItem(
+//                         child: Text("Share on whatsapp"),
+//                         value: 3,
+//                       ),
+//                     ]),
+//             // IconButton(
+//             //   icon: const Icon(Icons.share),
+//             //   color: Colors.black45,
+//             //   tooltip: 'Share',
+//             //   onPressed: () {
+//             //     // ScaffoldMessenger.of(context).showSnackBar(
+//             //     //     const SnackBar(content: Text('This is a snackbar')));
+//             //   },
+//             // ),
+//           ],
+//         ),
+//         // Container(
+//         //   height: 0.5,
+//         //   color: Colors.blueGrey,
+//         // ),
+//         // SizedBox(
+//         //   height: 10,
+//         // ),
+//       ],
+//     ),
+//   );
+
+// }
+
+class Post extends StatefulWidget {
+  final String Name;
+  final String Email;
+  final String PhoneNo;
+  final String Profile;
+  final String Sms;
+  final String Date;
+
+  const Post(
+      {Key? key,
+      required this.Name,
+      required this.Email,
+      required this.PhoneNo,
+      required this.Profile,
+      required this.Sms,
+      required this.Date})
+      : super(key: key);
+
+  @override
+  _PostState createState() => _PostState();
+}
+    bool like = false;
+
+class _PostState extends State<Post> {
+  @override
+  Widget build(BuildContext context) {
+    String Name = "";
+    String Email = "";
+    String PhoneNo = '';
+    String Profile = "";
+    String Sms = "";
+    String Date = "";
+    setState(() {
+      Name = widget.Name;
+      Email = widget.Email;
+      PhoneNo = widget.PhoneNo;
+      Profile = widget.Profile;
+      Sms = widget.Sms;
+      Date = widget.Date;
+    });
+    gotoprofile() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PostProfilePage(
+              Name: Name, Email: Email, PhoneNo: PhoneNo, UserProfile: Profile),
+        ),
+      );
+    }
+
+    double maxWidth = 600;
+    return Container(
+      constraints: BoxConstraints(maxWidth: maxWidth),
+      // width: vwidth - 20,
+      // height: vwidth,
+      // decoration: new BoxDecoration(
+      //   borderRadius: new BorderRadius.circular(16.0),
+      //   color: Colors.blue[200],
+      // ),
+      child: Column(
+        children: [
+          Container(
+            constraints: BoxConstraints(maxWidth: maxWidth),
+            // width: vwidth,
+            height: 5,
+            color: Colors.black12,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: gotoprofile,
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          radius: 50.0,
+                          backgroundImage: NetworkImage(Profile),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    constraints: BoxConstraints(maxWidth: maxWidth - 300),
+                    // width: vwidth / 1.3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          Name,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        Text(
+                          Date,
+                          style: TextStyle(
+                              color: Colors.black45,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 10),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              PopupMenuButton(
+                  icon: const Icon(
+                    Icons.more_vert,
+                    color: Colors.black45,
+                  ),
+                  elevation: 20,
+                  enabled: true,
+                  onSelected: (value) {
+                    if (value == 1) {
+                      print("Edit");
+                    }
+                    if (value == 2) {
+                      print("Delete");
+                    }
+                    if (value == 3) {
+                      print("Report");
+                    }
+                  },
+                  itemBuilder: (context) => [
+                        PopupMenuItem(
+                          child: Text("Edit"),
+                          value: 1,
+                        ),
+                        PopupMenuItem(
+                          child: Text("Delete"),
+                          value: 2,
+                        ),
+                        PopupMenuItem(
+                          child: Text("Report"),
+                          value: 3,
+                        ),
+                      ]),
+
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: Icon(Icons.more_vert),
+              // )
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              constraints: BoxConstraints(maxWidth: maxWidth),
+              // width: vwidth - 30,
+              decoration: new BoxDecoration(
+                borderRadius: new BorderRadius.circular(16.0),
+                // color: Colors.blue[200],
+                color:
+                    Colors.primaries[_random.nextInt(Colors.primaries.length)],
+                // [_random.nextInt(9) * 100],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Center(
+                  child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 70, bottom: 70),
+                child: Text(
+                  Sms,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                ),
+              )),
+            ),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          // Container(
+          //   height: 0.2,
+          //   color: Colors.blueGrey,
+          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.thumb_up),
+                color: Colors.black45,
+                tooltip: 'Like',
+                onPressed: () {
+                  setState(() {
+                   like= !like;
+                  });
+                  print(like);
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //     const SnackBar(content: Text('dis Liked')));
+                },
+              ),
+
+              IconButton(
+                icon: const Icon(Icons.message),
+                color: Colors.black45,
+                tooltip: 'Comment',
+                onPressed: () {
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //     const SnackBar(content: Text('This is a snackbar')));
+                },
+              ),
+              PopupMenuButton(
+                  icon: const Icon(
+                    Icons.share,
+                    color: Colors.black45,
+                  ),
+                  elevation: 20,
+                  enabled: true,
+                  onSelected: (value) {
+                    if (value == 1) {
+                      print("Download");
+                    }
+                    if (value == 2) {
+                      print("Share on facebook");
+                    }
+                    if (value == 3) {
+                      print("Share on whatsapp");
+                    }
+                  },
+                  itemBuilder: (context) => [
+                        PopupMenuItem(
+                          child: Text("Download"),
+                          value: 1,
+                        ),
+                        PopupMenuItem(
+                          child: Text("Share on facebook"),
+                          value: 2,
+                        ),
+                        PopupMenuItem(
+                          child: Text("Share on whatsapp"),
+                          value: 3,
+                        ),
+                      ]),
+              // IconButton(
+              //   icon: const Icon(Icons.share),
+              //   color: Colors.black45,
+              //   tooltip: 'Share',
+              //   onPressed: () {
+              //     // ScaffoldMessenger.of(context).showSnackBar(
+              //     //     const SnackBar(content: Text('This is a snackbar')));
+              //   },
+              // ),
+            ],
+          ),
+          // Container(
+          //   height: 0.5,
+          //   color: Colors.blueGrey,
+          // ),
+          // SizedBox(
+          //   height: 10,
+          // ),
+        ],
       ),
     );
   }
-
-  double maxWidth = 600;
-  return Container(
-    constraints: BoxConstraints(maxWidth: maxWidth),
-    // width: vwidth - 20,
-    // height: vwidth,
-    // decoration: new BoxDecoration(
-    //   borderRadius: new BorderRadius.circular(16.0),
-    //   color: Colors.blue[200],
-    // ),
-    child: Column(
-      children: [
-        Container(
-          constraints: BoxConstraints(maxWidth: maxWidth),
-          // width: vwidth,
-          height: 5,
-          color: Colors.black12,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(children: [
-               GestureDetector(
-              onTap: gotoprofile,
-              child: Container(
-                width: 60,
-                height: 60,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: NetworkImage(Profile),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              constraints: BoxConstraints(maxWidth: maxWidth - 300),
-              // width: vwidth / 1.3,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    Name,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  Text(
-                    Time,
-                    style: TextStyle(
-                        color: Colors.black45,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10),
-                  )
-                ],
-              ),
-            ),
-         
-            ],),
-              IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.more_vert),
-            )
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            constraints: BoxConstraints(maxWidth: maxWidth),
-            // width: vwidth - 30,
-            decoration: new BoxDecoration(
-              borderRadius: new BorderRadius.circular(16.0),
-              // color: Colors.blue[200],
-              color: Colors.primaries[_random.nextInt(Colors.primaries.length)],
-              // [_random.nextInt(9) * 100],
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            child: Center(
-                child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 70, bottom: 70),
-              child: Text(
-                Sms,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-              ),
-            )),
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        )
-      ],
-    ),
-  );
 }

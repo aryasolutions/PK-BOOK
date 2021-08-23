@@ -102,22 +102,23 @@ class _UserProfilePageState extends State<UserProfilePage> {
       debugShowCheckedModeBanner: false,
       home: Center(
         child: Container(
-          constraints: BoxConstraints(maxWidth: maxWidth - 100),
+          constraints: BoxConstraints(maxWidth: maxWidth),
           child: Scaffold(
             appBar: AppBar(
               centerTitle: true,
               leading: IconButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(
-                            Name: widget.Name,
-                            Email: widget.Email,
-                            PhoneNo: widget.PhoneNo,
-                            UserProfile: widget.UserProfile),
-                      ),
-                    );
+                    Navigator.of(context).pop();
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => HomePage(
+                    //         Name: widget.Name,
+                    //         Email: widget.Email,
+                    //         PhoneNo: widget.PhoneNo,
+                    //         UserProfile: widget.UserProfile),
+                    //   ),
+                    // );
                   },
                   icon: Icon(
                     Icons.arrow_back,
@@ -250,8 +251,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                   padding: const EdgeInsets.only(
                                       top: 20, bottom: 20),
                                   child: Container(
-                                      constraints:
-                                          BoxConstraints(maxWidth: maxWidth),
+                                      constraints:BoxConstraints(maxWidth: maxWidth),
                                       // width: MediaQuery.of(context).size.width -20,
                                       height: 1,
                                       color: Colors.black12),
@@ -266,8 +266,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                       size: 40,
                                     ),
                                     Container(
-                                      constraints:
-                                          BoxConstraints(maxWidth: maxWidth),
+                                      constraints:BoxConstraints(maxWidth: maxWidth),
                                       // width: MediaQuery.of(context).size.width /  1.4,
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
