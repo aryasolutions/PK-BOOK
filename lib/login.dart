@@ -35,10 +35,10 @@ class _LoginState extends State<Login> {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     // print("objectobjectobjectobjectobjectobjectobjectobjectobject");
-    final String useremail = useremailcontroller.text;
-    final String userpassword = userpasswordcontroller.text;
-    //     final String useremail = 'mudassirmukhtar4@gmail.com';
-    // final String userpassword = 'qwerty';
+    // final String useremail = useremailcontroller.text;
+    // final String userpassword = userpasswordcontroller.text;
+        final String useremail = 'lovelymian0900@gmail.com';
+    final String userpassword = 'qwerty';
     try {
       final UserCredential user = await auth.signInWithEmailAndPassword(
           email: useremail, password: userpassword);
@@ -195,7 +195,7 @@ class _LoginState extends State<Login> {
                                 width: 270,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage('images/Logo.png'),
+                                    image: AssetImage('images/Logo_Blue.png'),
                                     fit: BoxFit.fill,
                                   ),
                                   borderRadius: BorderRadius.circular(10),

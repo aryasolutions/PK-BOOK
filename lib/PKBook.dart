@@ -555,21 +555,24 @@ class Post extends StatefulWidget {
   final String Profile;
   final String Sms;
   final String Date;
+  final String cruntUser;
 
-  const Post(
-      {Key? key,
-      required this.Name,
-      required this.Email,
-      required this.PhoneNo,
-      required this.Profile,
-      required this.Sms,
-      required this.Date})
-      : super(key: key);
+  const Post({
+    Key? key,
+    required this.Name,
+    required this.Email,
+    required this.PhoneNo,
+    required this.Profile,
+    required this.Sms,
+    required this.cruntUser,
+    required this.Date,
+  }) : super(key: key);
 
   @override
   _PostState createState() => _PostState();
 }
-    bool like = false;
+
+bool like = false;
 
 class _PostState extends State<Post> {
   @override
@@ -580,6 +583,8 @@ class _PostState extends State<Post> {
     String Profile = "";
     String Sms = "";
     String Date = "";
+    String cruntUser = "";
+
     setState(() {
       Name = widget.Name;
       Email = widget.Email;
@@ -587,7 +592,9 @@ class _PostState extends State<Post> {
       Profile = widget.Profile;
       Sms = widget.Sms;
       Date = widget.Date;
+      cruntUser = widget.cruntUser;
     });
+
     gotoprofile() {
       Navigator.push(
         context,
@@ -596,6 +603,110 @@ class _PostState extends State<Post> {
               Name: Name, Email: Email, PhoneNo: PhoneNo, UserProfile: Profile),
         ),
       );
+    }
+
+    CollectionReference cruntPost =
+        FirebaseFirestore.instance.collection('Posts');
+    CollectionReference PostReport =
+        FirebaseFirestore.instance.collection('Reports');
+
+    Future<void> deletePost(index) {
+      return cruntPost
+          .doc(index)
+          .delete()
+          .then((value) => {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Your post is deleted')))
+              })
+          .catchError((error) => print("Failed to delete user: $error"));
+    }
+
+    final TextEditingController SMScontroller = TextEditingController();
+    String SMS = SMScontroller.text;
+
+    Future<void> updatePost(index) {
+      String UpdateSMS = SMScontroller.text;
+      return cruntPost
+          .doc(index)
+          .update({'SMS': UpdateSMS})
+          .then((value) => {
+                Navigator.of(context).pop(), // dismiss dialog
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Your Post is Updated')))
+              })
+          .catchError((error) => {
+                // print("Failed to update user: $error")
+                Navigator.of(context).pop(), // dismiss dialog
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Failed to update Post')))
+              });
+    }
+
+    updatePop() {
+      Widget okButton = ElevatedButton(
+        child: Text("Post"),
+        onPressed: () {
+          updatePost(Name + Date);
+        },
+        style: ElevatedButton.styleFrom(
+            // primary: Colors.purple,
+            // padding: EdgeInsets.symmetric(
+            //     horizontal: vwidth / 3, vertical: 10),
+            textStyle: TextStyle(fontWeight: FontWeight.bold)),
+      );
+      AlertDialog alert = AlertDialog(
+        title: Center(child: Text("Create post")),
+        content: SizedBox(
+          height: 230,
+          child: Column(
+            children: [
+              Container(
+                constraints: BoxConstraints(maxWidth: 500, maxHeight: 200),
+                // width: vwidth - 50,
+                // height: 200,
+                child: TextFormField(
+                  minLines: 1,
+                  maxLines: 6,
+                  controller: SMScontroller,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "What's on your mind? "),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+              )
+            ],
+          ),
+        ),
+        actions: [
+          okButton,
+        ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
+
+    Future<void> ReportPost() {
+      return PostReport
+          .doc()
+          .set({'Post Auther': Name, 'report Auther': cruntUser, 'SMS':Sms})
+          .then((value) => {
+            // print("Report submitted"),
+             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text(
+                                'Report submitted')))})
+          .catchError((error) => {
+            // print("report submitted Failed: $error")
+             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text(
+                                'Report submitted Failed')))});
     }
 
     double maxWidth = 600;
@@ -668,13 +779,32 @@ class _PostState extends State<Post> {
                   enabled: true,
                   onSelected: (value) {
                     if (value == 1) {
-                      print("Edit");
+                      if (Name == cruntUser) {
+                        updatePop();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text(
+                                    'Your are not allwoed to edit this post')));
+                      }
                     }
                     if (value == 2) {
-                      print("Delete");
+                      if (Name == cruntUser) {
+                        deletePost(Name + Date);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text(
+                                'Your are not allwoed to Delete this post')));
+                      }
                     }
                     if (value == 3) {
-                      print("Report");
+                      if (Name == cruntUser) {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text(
+                                'Your are not allwoed')));
+                      } else {
+                      ReportPost();
+                      }
                     }
                   },
                   itemBuilder: (context) => [
@@ -747,7 +877,7 @@ class _PostState extends State<Post> {
                 tooltip: 'Like',
                 onPressed: () {
                   setState(() {
-                   like= !like;
+                    like = !like;
                   });
                   print(like);
                   // ScaffoldMessenger.of(context).showSnackBar(

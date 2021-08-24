@@ -47,6 +47,7 @@ class _GetPostDataState extends State<GetPostData> {
                 child: Column(
                   children: [
                     Post(
+                      cruntUser : widget.username,
                       Name: data['username'],
                       Date: data['Date'],
                       PhoneNo: data['PhoneNo'],

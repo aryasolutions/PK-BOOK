@@ -2,6 +2,7 @@ import 'package:email_auth/email_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pk_book/Navigation.dart';
 import 'package:pk_book/login.dart';
 import 'package:flutter_password_strength/flutter_password_strength.dart';
@@ -196,6 +197,18 @@ class _RegistrationState extends State<Registration> {
                                     hintText: "Phone Number",
                                     labelText: "Phone Number"),
                               ),
+                              // IntlPhoneField(
+                              //   decoration: InputDecoration(
+                              //     labelText: 'Phone Number',
+                              //     border: OutlineInputBorder(
+                              //       borderSide: BorderSide(),
+                              //     ),
+                              //   ),
+                              //   initialCountryCode: 'IN',
+                              //   onChanged: (phone) {
+                              //     print(phone.completeNumber);
+                              //   },
+                              // ),
                               SizedBox(height: 15),
                               TextField(
                                 controller: userpasswordcontroller,
